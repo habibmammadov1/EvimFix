@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="~{/template/head :: head}"></head>   
+    <body class="g-sidenav-show bg-dark">
+        <aside th:replace="~{/template/menu :: menu}"></aside>   
+        <main class="main-content position-relative border-radius-lg ">
+            <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="false">
+                <div class="container-fluid py-1 px-3">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                      <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;" th:text="#{pages}"></a></li>
+                      <li class="breadcrumb-item text-sm text-white active" aria-current="page" th:text="${pageName}"></li>
+                    </ol>
+                    <h6 class="font-weight-bolder text-white mb-0" th:text="${pageName}"></h6>
+                  </nav>
+                  <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                    <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                      <div class="input-group">
+                        <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" th:placeholder="#{typeHere}">
+                      </div>
+                    </div>
+                    <div class="me-3 ms-2 mx-auto">
+                      <select id="locales" class="form-control p-2 text-dark text-center">
+                        <option value="az">AZE</option>
+                        <option value="us">ENG</option>
+                      </select>
+                    </div>
+                    <ul class="navbar-nav  justify-content-end">
+                      <li class="nav-item d-flex align-items-center">
+                        <button type="button" class="nav-link text-white font-weight-bold px-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                          <i class="fa fa-sign-out me-sm-1"></i>
+                          <span class="d-sm-inline d-none" th:text="#{logout}"></span>
+                        </button>
+                      </li>
+                      <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                        <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+                          <div class="sidenav-toggler-inner">
+                            <i class="sidenav-toggler-line bg-white"></i>
+                            <i class="sidenav-toggler-line bg-white"></i>
+                            <i class="sidenav-toggler-line bg-white"></i>
+                          </div>
+                        </a>
+                      </li>
+                      <li class="nav-item px-3 d-flex align-items-center">
+                        <a href="javascript:;" class="nav-link text-white p-0">
+                          <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+            </nav>
+            <div th:if="${result} != '' and ${result} != null and ${result} == 'OK'">
+              <div class="alert w-50 ms-5 text-white" style="background-color: #85cf82;" role="alert" th:text="#{addedSuccess}">
+                
+              </div>
+            </div>
+            <div th:if="${result} != '' and ${result} != null and ${result} != 'OK'">
+              <div class="alert w-50 ms-5 text-white" style="background-color: #fc7b6f;" role="alert" th:text="${result}">
+                
+              </div>
+            </div>
+            <div class="ms-5">
+                <form class="w-50 text-white" th:action="@{/wp-admin/new-user}" th:object="${user}" method="post">
+                    <div class="form-group">
+                        <label for="firstName" class="text-white" th:text="#{name}"></label> <span style="color: red;">*</span>
+                        <input type="text" th:field="*{firstName}" class="form-control" id="firstName" aria-describedby="firstName" th:placeholder="#{enterName}">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName" class="text-white" th:text="#{surname}"></label> <span style="color: red;">*</span>
+                        <input type="text" th:field="*{lastName}" class="form-control" id="lastName" aria-describedby="lastName" th:placeholder="#{enterSurname}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1" class="text-white" th:text="#{email}"></label> <span style="color: red;">*</span>
+                        <input required type="email" th:field="*{email}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" th:placeholder="#{enterEmail}">
+                    </div>
+                    <div class="form-group">
+                        <label for="username" class="text-white" th:text="#{username}"></label> <span style="color: red;">*</span>
+                        <input required type="text" th:field="*{username}" class="form-control" id="username" aria-describedby="username" th:placeholder="#{enterUsername}">
+                        <label class="text-white font-weight-light" th:text="#{cantChangeUsername}"></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="password1" class="text-white" th:text="#{password}"></label> <span style="color: red;">*</span>
+                        <input required type="password" th:field="*{password}" class="form-control" id="password1" th:placeholder="#{enterPassword}">
+                        <p th:if="${#fields.hasErrors('password')}" 
+                          th:errors="*{password}" 
+                          class="text-white font-weight-light">
+                            Parol min. 6 simvoldan ibarət olmalıdır.
+                        </p>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" onclick="showPassword()" type="checkbox" name="showPassword1" id="showPassword1">
+                        <label class="form-check-label text-white" for="showPassword1" th:text="#{showPassword}"></label>
+                      </div>
+                    <div class="form-group">
+                        <label for="roles" class="text-white" th:text="#{role}"></label> <span style="color: red;">*</span>
+                        <select id="roles" name="role" class="form-control" required>
+                          <option value="" selected disabled th:text="#{select}"></option>
+                          <th:block th:each="rol : ${rollar}">
+                            <option th:value="${rol.id}" th:text="${rol.name}"></option>
+                          </th:block>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-light" th:text="#{add}"></button>
+                </form>
+            </div>
+        </main>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" th:text="#{doYouWantLogout}"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal" th:text="#{close}"></button>
+                <a href="/wp-admin/logout" class="btn text-white" style="background-color: #444191;" th:text="#{lout}"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div th:replace="/template/footer :: footer"></div>   
+
+        <script>
+            function showPassword() {
+              var x = document.getElementById("password1");
+              if (x.type === "password") {
+                x.type = "text";
+              } else {
+                x.type = "password";
+              }
+            }
+          </script>
+    </body>
+</html>

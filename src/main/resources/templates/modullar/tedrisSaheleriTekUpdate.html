@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="az">
+    <head th:replace="/template/head :: head"></head>   
+    <body class="g-sidenav-show bg-gray-100">
+        <div class="min-height-300 bg-dark position-absolute w-100"></div>
+        <aside th:replace="/template/menu :: menu"></aside>   
+        <main class="main-content position-relative border-radius-lg ">
+            <div th:replace="/template/header :: navbar"></div>
+            
+            <div th:if="${result} != '' and ${result} != null and ${result} == 'OK'">
+              <div class="alert w-50 mx-auto text-white" style="background-color: #85cf82;" role="alert" th:text="#{addSuccess}">
+                
+              </div>
+            </div>
+            <div th:if="${result} != '' and ${result} != null and ${result} != 'OK'">
+              <div th:text="${result}" class="alert w-50 mx-auto text-white" style="background-color: #fc7b6f;" role="alert">
+                
+              </div>
+            </div>
+            
+            <form class="text-white" th:action="@{/wp-admin/tedrisSaheleri/updateCourse}" th:object="${course}" method="post" enctype="multipart/form-data">
+              <div class="row ms-3 w-90">
+                <input type="hidden" th:field="*{id}" />
+                <div class="form-group w-25">
+                  <label for="firstName" class="text-white" th:text="#{course}"></label> <span style="color: red;">*</span>
+                  <input type="text" required class="form-control" th:field="*{courseName}" id="firstName" aria-describedby="firstName" th:placeholder="#{course}">
+                </div>
+
+                <div class="row">
+                  <div class="form-group w-15">
+                    <label for="courseHour" class="text-white" th:text="#{courseHour}"></label> <span style="color: red;">*</span>
+                    <input type="number" required class="form-control" th:field="*{courseHour}" id="courseHour" aria-describedby="courseHour" th:placeholder="#{enterCourseHour}">
+                  </div>
+                  
+                  <div class="form-group w-15">
+                    <label for="courseDuration" class="text-white" th:text="#{courseDuration}"></label> <span style="color: red;">*</span>
+                    <input type="number" required class="form-control" th:field="*{courseDuration}" id="courseDuration" aria-describedby="courseDuration" th:placeholder="#{enterCourseDuration}">
+                  </div>
+
+                  <div class="form-group w-15">
+                    <label for="category" class="text-white" th:text="#{courseCategory}"></label> <span style="color: red;">*</span>
+                    <select class="form-control" required id="category" th:field="*{courseCategory}" aria-describedby="category">
+                      <option th:each="i : ${categories}" th:value="${i.key}" th:text="${i.value}"></option>
+                    </select>
+                  </div>
+
+                  <div class="form-group w-25">
+                    <label for="coursePhoto" class="text-white" th:text="#{coursePhoto}"></label>
+                    <input type="file" class="form-control" name="file" enctype="multipart/form-data" 
+                          id="coursePhoto" aria-describedby="coursePhoto" th:placeholder="#{enterName}">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group ms-0 w-80">
+                    <label for="about" class="text-white" th:text="#{courseAbout}"></label> <span style="color: red;">*</span>
+                    <textarea required class="form-control border-2 border-dark" th:field="*{courseContent}"
+                              id="about" aria-describedby="about" th:placeholder="#{courseAbout}"></textarea>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-dark ms-0 mt-5" style="width: 100px;">Yenilə</button>                
+              </div>
+            </form>
+        </main>
+
+        <div th:replace="/template/footer :: footer"></div>   
+    </body>
+</html>

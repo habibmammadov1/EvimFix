@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="/template/head :: head">
+    </head>   
+    <body class="g-sidenav-show bg-gray-100">
+        <div class="min-height-300 bg-dark position-absolute w-100"></div>
+        <aside th:replace="/template/menu :: menu"></aside>   
+        <main class="main-content position-relative border-radius-lg ">
+            <div th:replace="/template/header :: navbar"></div>
+            
+            <div class="w-75 mx-auto">
+                <table class="table text-center bg-white rounded table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">№</th>
+                            <th scope="col" th:text="#{pages}"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="modul, iterStat : ${modullar}">
+                            <td scope="row" th:text="${iterStat.count}"></td>
+                            <td>
+                                <a th:href="@{'/wp-admin/modullar_umumi?modulId=' + ${modul.key}}" 
+                                style="cursor: pointer; color: #15114f; font-weight: 500; text-decoration: underline;" 
+                                th:text="${modul.value}"></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                
+            </div>
+        </main>
+
+        
+
+        <div th:replace="/template/footer :: footer"></div>   
+    </body>
+</html>

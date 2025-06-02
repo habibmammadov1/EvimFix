@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6" lang="en">
+
+<head th:replace="~{/template/head :: head}"></head>   
+
+<body class="">
+  <main class="main-content  mt-0">
+    <section>
+      <div class="page-header min-vh-100">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0 mx-auto">
+              <div th:if="${tokenError} != '' and ${tokenError} != null">
+                <div class="alert text-white" style="background-color: #85cf82;" role="alert" th:text="${tokenError}">
+                  
+                </div>
+              </div>
+              <div th:if="${message} != '' and ${message} != null">
+                <div class="alert text-white" style="background-color: #85cf82;" role="alert" th:text="${message}">
+                  
+                </div>
+              </div>
+              <div class="card card-plain">
+                <div class="card-header pb-0 text-start">
+                  <h4 class="font-weight-bolder">Xoş gəlmişsiniz!</h4>
+                  <p class="mb-0">Daxil olmaq üçün email və parolunuzu daxil edin!</p>
+                </div>
+                <div class="card-body">
+                  <form th:action="@{/login}" th:object="${user}" method="post">
+                    <div class="mb-3">
+                      <input type="text" th:field="*{username}" class="form-control form-control-lg" required placeholder="İstifadəçi adı" aria-label="username">
+                    </div>
+                    <div class="mb-3">
+                      <input id="password1" type="password" th:field="*{password}" class="form-control form-control-lg" required placeholder="Parol" aria-label="Password">
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" onclick="showPassword()" type="checkbox" name="showPassword1" id="showPassword1">
+                      <label class="form-check-label" for="showPassword1">Parolu göstər</label>
+                    </div>
+                    
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Daxil ol</button>
+                    </div>
+
+                    <div class="form-check form-switch mt-5">
+                      <input class="form-check-input" type="checkbox" name="remember-me" id="rememberMe">
+                      <label class="form-check-label" for="rememberMe">Məni xatırla</label>
+                    </div>
+                  </form>
+                  <div class="text-center mt-5">
+                    <a href="http://pictograph.edu.az/">EvimFix</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column">
+              <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg');
+                          background-size: cover;">
+                <span class="mask bg-gradient-primary opacity-6"></span>
+                <h4 class="mt-5 text-white font-weight-bolder position-relative">EvimFix</h4>
+                <p class="text-white position-relative">Əmlak agentliyi</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!--   Core JS Files   -->
+  <script th:src="@{/wpAdmin/js/core/popper.min.js}"></script>
+  <script th:src="@{/wpAdmin/js/core/bootstrap.min.js}"></script>
+  <script th:src="@{/wpAdmin/js/plugins/perfect-scrollbar.min.js}"></script>
+  <script th:src="@{/wpAdmin/js/plugins/smooth-scrollbar.min.js}"></script>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+
+  <script>
+    function showPassword() {
+      var x = document.getElementById("password1");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+  </script>
+  
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script th:src="@{/wpAdmin/js/argon-dashboard.min.js?v=2.1.0}"></script>
+</body>
+
+</html>

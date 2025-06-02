@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="~{/template/head :: head}"></head>   
+    <body class="g-sidenav-show bg-gray-100">
+        <div class="min-height-300 bg-dark position-absolute w-100"></div>
+        <aside th:replace="/template/menu :: menu"></aside>   
+        <main class="main-content position-relative border-radius-lg ">
+            <aside th:replace="/template/header :: navbar"></aside>
+            <h1 class="text-white text-center mt-5">Əlaqə</h1>
+        </main>
+
+        <div th:replace="/template/footer :: footer"></div>   
+    </body>
+</html>

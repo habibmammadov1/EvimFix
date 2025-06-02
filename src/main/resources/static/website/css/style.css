@@ -1,0 +1,505 @@
+@font-face {
+    font-family: Gilroy-medium;
+    src: url(../../fonts/Gilroy-Medium.otf);
+}
+
+@font-face {
+    font-family: Gilroy-bold;
+    src: url(../../fonts/Gilroy-Bold.otf);
+}
+
+@font-face {
+    font-family: Gilroy-black;
+    src: url(../../fonts/Gilroy-Black.otf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Gilroy-medium', sans-serif;
+}
+
+.bashliq{
+    position: relative; /* Allows placement over the image */
+    z-index: 101; /* Stays above */
+    width: 100%;
+}
+
+.ellipce1{
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    width: 25%;
+}
+
+.srect1{
+    position: absolute;
+    opacity: .1;
+    left: 8%;
+    top: 20%;
+    z-index: -1;
+}
+
+.srect2{
+    position: absolute;
+    opacity: .1;
+    right: 10%;
+    top: 46%;
+    z-index: -1;
+}
+
+.srect3{
+    position: absolute;
+    opacity: .1;
+    left: 8%;
+    top: 71%;
+    z-index: -1;
+}
+
+.srect4{
+    position: absolute;
+    opacity: .1;
+    right: 8%;
+    top: 65%;
+    z-index: -1;
+}
+
+.srect5{
+    position: absolute;
+    opacity: .1;
+    left: 22%;
+    top: 45%;
+    z-index: -1;
+}
+
+.ellipce2{
+    position: absolute;
+    right: 0;
+    top: 8%;
+    width: 45%;
+    z-index: -1;
+}
+
+.navbar{
+    border: 1px solid #fff;
+    border-radius: 68px;
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (max-width:576px){.navbar{width:95%; margin-right: 30px;}}
+
+@media (min-width:576px){.navbar{max-width:540px}}
+
+@media (min-width:768px){.navbar{max-width:720px}}
+
+@media (min-width:992px){.navbar{max-width:960px}}
+
+@media (min-width:1200px){.navbar{max-width:1140px}}
+
+@media (min-width:1400px){.navbar{max-width:1320px}}
+
+.navbar-nav .nav-item .nav-link{
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
+    margin-left: 32px;
+    transition: .5s;
+}
+
+.navbar-nav .nav-item .nav-link:hover{
+    color: #FFB852;
+}
+
+.activeMe a{
+    color: #FFB852;
+}
+
+.muracietEtBtn{
+    color: #042F3C;
+    background-color: #FFB852;
+    border: 2px solid #FFB852;
+    border-radius: 40px;
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-bottom: 15px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    transition: .5s;
+}
+
+.muracietEtBtn:hover{
+    color: #FFB852;
+    border: 2px solid #FFB852;
+}
+
+.muracietEtBtn i{
+    font-family: 'Gilroy-bold';
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-list' viewBox='0 0 16 16'%3e%3cpath fill-rule='evenodd' d='M2.5 12a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm0-4a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm0-4a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11z'/%3e%3c/svg%3e");
+}
+
+.main-exp, .main-exp span{
+    font-family: 'Gilroy-black';
+    letter-spacing: 6px;
+    text-transform: uppercase; 
+    font-size: 135px; 
+    line-height: 210px;
+}
+
+.main-exp span{
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0 !important;
+    margin: 0 !important;
+    line-height: 0;
+}
+
+header .keshfEt{
+    color: #042F3C;
+    background-color: #FFB852;
+    border-radius: 40px;
+    padding-top: 20px;
+    padding-left: 30px;
+    padding-bottom: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-top: 50px;
+    border: 2px solid #FFB852;
+    transition: .5s;
+}
+
+header .keshfEt:hover{    
+    color: #FFB852;
+    border: 2px solid #FFB852;
+}
+
+.keshfEt i{
+    font-family: 'Gilroy-bold';
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+@media only screen and (min-width: 990px) and (max-width: 1200px) {
+    .muracietEtBtn{
+        padding-top: 12px;
+        padding-left: 15px;
+        padding-bottom: 12px;
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .muracietEtBtn i{
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .navbar-nav .nav-item .nav-link{
+        line-height: 22px;
+        margin-left: 20px;
+    }
+
+    .main-exp, .main-exp span{
+        font-size: 100px;
+        line-height: 170px;
+    }
+}
+
+@media only screen and (min-width: 990px) {
+    .main-exp, .main-exp span{
+        margin-top: 16rem;
+    }
+}
+
+@media only screen and (max-width: 990px) {
+    .main-exp, .main-exp span{
+        margin-top: 14rem;
+        font-size: 60px;
+        line-height: 100px;
+    }
+}
+
+@media only screen and (max-width: 540px) {
+    .main-exp, .main-exp span{
+        margin-top: 13rem;
+        font-size: 37px;
+        line-height: 60px;
+    }
+
+}
+
+@media only screen and (max-width: 370px) {
+    .main-exp, .main-exp span{
+        margin-top: 12rem;
+        font-size: 25px;
+        line-height: 38px;
+    }
+}
+
+/* Tedris saheleri */
+.tedrisSaheleri{
+    position: relative;
+    z-index: 100;
+    top: 10%;
+}
+
+.textTedrisSaheleri{
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 60px;
+    color: #F4F4F4;
+}
+
+.custom-card {
+    border: none;
+    border-radius: 30px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    width: 100%;
+    height: 315px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    text-align: left;
+    padding: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.custom-card:hover {
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Adjusting for Desktop */
+@media (min-width: 1025px) {
+    .cardRow {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .cardCol {
+        width: 33.33%; /* 3 columns for desktop */
+        padding: 10px;
+    }
+}
+
+/* Adjusting for Tablet */
+@media (max-width: 1024px) and (min-width: 768px) {
+    .cardRow {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .cardCol{
+        width: 50%; /* 2 columns for tablets */
+        padding: 15px;
+    }
+}
+
+/* Adjusting for Mobile */
+@media (max-width: 767px) {
+    .cardRow {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .cardCol{
+        width: 100%; /* 1 column for mobile */
+        padding: 15px;
+    }
+
+    .tedrisSaheleri{
+        position: relative;
+        z-index: 100;
+        top: 5%;
+    }
+}
+
+/* Background Zoom Effect */
+.custom-card::before {
+    content: "";
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+    z-index: 0;
+}
+
+.custom-card:hover::before {
+    transform: scale(1.2); /* Zoom effect */
+}
+
+/* Card Content */
+.custom-card .card-body {
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    z-index: 1;
+    padding: 0;
+    text-align: left;
+    transition: transform 0.4s ease;
+}
+
+.card-body .card-title{
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 35px;
+    letter-spacing: 1.5px;
+    font-family: 'Gilroy-bold', sans-serif;
+}
+
+.custom-card .card-body .card-title,
+.custom-card .card-body .badge {
+    transform: translateY(15px);
+    transition: transform 0.4s ease;
+}
+
+.custom-card:hover .card-body .card-title,
+.custom-card:hover .card-body .badge {
+    transform: translateY(-0.1px);
+}
+
+/* Hover Details */
+.hover-details {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out, transform 0.22s ease-in-out;
+    font-size: 0.7rem;
+    position: relative;
+    z-index: 1;
+    transform: translateY(45px);
+
+}
+
+.custom-card:hover .hover-details {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hover Icon */
+.custom-card .hover-icon {
+    position: absolute;
+    top: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    transition: opacity 1.5s ease-in-out, height 1.5s ease-in-out;
+    z-index: 1;
+    border-radius: 50px;
+    color: #000;
+    background-color: white;
+    padding: 15px;
+}
+
+.custom-card:hover .hover-text {
+    height: auto;
+    width: auto;
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out, height 1.5s ease-in-out;
+}
+
+.custom-card::after .hover-text {
+    opacity: 0;
+    height: 0;
+}
+
+/* Hover Text */
+.hover-text {
+    color: black;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    background-color: white;
+    transition: opacity 1.5s ease-in-out, height 1.5s ease-in-out;
+}
+
+/* Card Colors and Backgrounds */
+.first-card {
+    background-image: url(../img/Untitled-3\ 1.png);
+    background-color: #61d3ed;
+    background-size: cover;
+    background-position: center;
+}
+
+.second-card {
+    background-image: url(../img/Untitled-3\ 2.png);
+    background-size: cover;
+    background-color: #33a695;
+    background-position: center;
+}
+
+.third-card {
+    background-image: url(../img/Untitled-3\ 3.png);
+    background-size: cover;
+    background-color: #88de64;
+    background-position: center;
+}
+
+.fourth-card {
+    background-image: url(../img/Untitled-3\ 4.png);
+    background-size: cover;
+    background-color: #d95f87;
+    background-position: center;
+}
+
+.fifth-card {
+    background-image: url(../img/Untitled-3\ 5.png);
+    background-size: cover;
+    background-position: center;
+    background-color: #ffc763;
+}
+
+.sixth-card {
+    background-image: url(../img/Untitled-3\ 6.png);
+    background-size: cover;
+    background-position: center;
+    background-color: #ed4ad7;
+}
+
+/* Card Title and Badge Styling */
+.card-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+.badge {
+    background-color: rgba(0, 0, 0, 0.200);
+    border-radius: 30px;
+    padding: 9px 8px;
+    margin-left: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.badge-time {
+    background-color: rgba(0, 0, 0, 0.200);
+    border-radius: 10px;
+    padding: 4px 8px;
+    margin-left: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}

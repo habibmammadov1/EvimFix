@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6" lang="en">
+<body>
+    <div th:fragment="footer">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+      </script>
+      <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
+
+      <script type="text/javascript">
+        ClassicEditor.create( document.querySelector('#about'));
+      </script>
+
+      <script type="text/javascript">
+          //const searchParams = new URLSearchParams(window.location.search);
+          //let local = searchParams.get("lang");
+          
+          //if(local != '' && local != null){
+          //    $('#locales').val(local); 
+          //}         
+
+          let contentLanguage;
+          fetch(window.location.href, { method: 'HEAD' }) // Make a lightweight request to get the headers
+          .then(response => {
+            contentLanguage = response.headers.get('Content-Language');
+            if (contentLanguage != '' && contentLanguage != null){
+              $('#locales').val(contentLanguage.slice(0, 2));  // Set the selected option
+            }
+          })
+          .catch(error => console.error("Error fetching locale:", error));
+
+          $(document).ready(function() {
+              $("#locales").change(function () {
+                  var selectedOption = $('#locales').val();
+                  if (selectedOption != ''){
+                      //window.location.href = window.location.href + '&lang=' + selectedOption;
+                      const urlParams = new URLSearchParams(window.location.search);
+
+                      urlParams.set('lang', selectedOption);
+
+                      window.location.search = urlParams;
+                  }
+              });
+          });
+
+          console.log(window.location.href + ' az');
+      </script>
+
+      <script>
+          var win = navigator.platform.indexOf('Win') > -1;
+          if (win && document.querySelector('#sidenav-scrollbar')) {
+            var options = {
+              damping: '0.5'
+            }
+            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+          }
+        </script>
+
+        <script>
+          $(document).ready(function () {
+              // Apply active class from localStorage on page load
+              let activeLink = localStorage.getItem('activeLink');
+              console.log(activeLink)
+              if (activeLink) {
+                  $('.nav-link').removeClass('active');
+                  $(`.navbar-nav li.nav-item a[href="${activeLink}"]`).addClass('active');
+              }
+      
+              // Handle click event
+              $('.navbar-nav').on('click', '.nav-link', function (event) {
+                  event.preventDefault(); // Prevent default navigation
+      
+                  // Save the clicked link's href to localStorage
+                  let linkHref = $(this).attr('href');
+                  localStorage.setItem('activeLink', linkHref);
+      
+                  // Update active class
+                  $('.nav-link').removeClass('active');
+                  $(this).addClass('active');
+      
+                  // Navigate to the new page
+                  window.location.href = linkHref;
+              });
+          });
+        </script>
+    
+    </div>
+  </body>
+  </html>

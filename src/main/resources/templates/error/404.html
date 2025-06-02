@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="~{/template/head :: head}"></head>   
+    <body class="g-sidenav-show bg-dark">  
+        <main class="main-content position-relative border-radius-lg ">
+            <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="false">
+                <div class="container-fluid py-1 px-3">
+                  <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                    <ul class="navbar-nav ms-md-auto pe-md-3 justify-content-end">
+                      <li class="nav-item d-flex align-items-center">
+                        <a href="/logout" onclick="if(!(confirm('Çıxmaq istədiyinizdən əminsiniz?'))) return false" class="nav-link text-white font-weight-bold px-0">
+                          <i class="fa fa-sign-out me-sm-1"></i>
+                          <span class="d-sm-inline d-none">Çıxış</span>
+                        </a>
+                      </li>
+                      <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                        <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+                          <div class="sidenav-toggler-inner">
+                            <i class="sidenav-toggler-line bg-white"></i>
+                            <i class="sidenav-toggler-line bg-white"></i>
+                            <i class="sidenav-toggler-line bg-white"></i>
+                          </div>
+                        </a>
+                      </li>
+                      <li class="nav-item px-3 d-flex align-items-center">
+                        <a href="javascript:;" class="nav-link text-white p-0">
+                          <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+            </nav>
+            <div class="ms-5">
+                <h1 class="text-white">Belə bir səhifə mövcud deyil :(</h1>
+                <a th:href="@{/}" class="text-white" style="text-decoration: underline;">Ana səhifəyə get</a>
+            </div>
+        </main>
+    </body>
+</html>
