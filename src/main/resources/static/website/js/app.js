@@ -1,7 +1,14 @@
 // State Management
+let favorites = [];
+try {
+    favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+} catch (e) {
+    console.error('localStorage parsing error:', e);
+}
+
 const State = {
-    favorites: JSON.parse(localStorage.getItem('favorites')) || [],
-    visibleProperties: 8,
+    favorites: favorites,
+    visibleProperties: 40,
     isLoading: false,
     allCards: document.querySelectorAll('.product-card'),
     
@@ -10,10 +17,10 @@ const State = {
         
         if (existingIndex === -1) {
             this.favorites.push(property);
-            showNotification('Sevimlilərə əlavə edildi');
+            showNotification('Sevimlilərə Əlavə Edildi!');
         } else {
             this.favorites.splice(existingIndex, 1);
-            showNotification('Sevimlilərdən silindi');
+            showNotification('Sevimlilərdən Silindi!');
         }
         this.saveFavorites();
     },
