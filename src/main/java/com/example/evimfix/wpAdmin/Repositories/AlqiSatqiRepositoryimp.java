@@ -379,11 +379,11 @@ public class AlqiSatqiRepositoryimp implements AlqiSatqiRepository {
             query += " and t.sheher = :sheher";
         }
 
-        if (rayon != null && rayon != 0) {
+        if (rayon != null && rayon != 0 && sheher != null && sheher == 8) {
             query += " and t.rayon = :rayon";
         }
 
-        if (metro != null && metro != 0) {
+        if (metro != null && metro != 0 && sheher != null && sheher == 8) {
             query += " and t.metro = :metro";
         }
 

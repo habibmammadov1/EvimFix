@@ -32,14 +32,14 @@ public class HomeController {
         model.addObject("rayonlar", alqiSatqiService.getRayonlar());
         model.addObject("metrolar", alqiSatqiService.getMetrolar());
 
-        model.addObject("sheher", sheher);
-        model.addObject("rayon", rayon);
+        model.addObject("sheherA", sheher);
+        model.addObject("rayonA", rayon);
         model.addObject("metro", metro);
         model.addObject("minQiymet", minQiymet);
         model.addObject("maxQiymet", maxQiymet);
         model.addObject("otaqSayi", otaqSayi);
-        model.addObject("emlakNovu", emlakNovu);
-        model.addObject("alishKiraye", alishKiraye);
+        model.addObject("emlakNovuA", emlakNovu);
+        model.addObject("alishKirayeA", alishKiraye);
 
 
         model.addObject("alqiSatqiList", alqiSatqiService.getAllAlqiSatqiByCategories(

@@ -80,6 +80,9 @@
                     <li><strong>Nömrə:</strong> <span id="property-number" th:text="${alqiSatqi.id}"></span></li>
                     <li><strong>Tip:</strong> <span id="property-type" th:text="${alqiSatqi.menzilNovAdi}">Mənzil</span></li>
                     <li><strong>Sahə:</strong> <span id="property-area" th:text="${alqiSatqi.sahe}"></span></li>
+                    <li><strong>Təmirli:</strong> <span id="property-area" th:text="${alqiSatqi.temir == 1 ? 'Hə' : 'Yox'}"></span></li>
+                    <li><strong>Çıxarış:</strong><span id="property-area" th:text="${alqiSatqi.chixarish == 1 ? 'Var' : 'Yox'}"></span></li>
+                    <li><strong>Sahə:</strong> <span id="property-area" th:text="${alqiSatqi.sahe}"></span></li>
                     <li><strong>Qiymət:</strong> <span id="property-price" th:text="${alqiSatqi.qiymet} + ' M²'"></span></li>
                     <li><strong>Ünvan:</strong> <span id="property-address" th:text="${alqiSatqi.unvan}"></span></li>
                     <li><strong>Metro:</strong> <span id="property-nearby-metro" th:text="${alqiSatqi.metroAdi}"></span></li>

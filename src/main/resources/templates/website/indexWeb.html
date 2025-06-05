@@ -28,7 +28,7 @@
     
 </head>
 <body>
-        <nav class="navbar">
+    <nav class="navbar">
         <div class="container">
             <a href="index.html"><div class="logo">
                 Evimfix
@@ -56,79 +56,88 @@
         <div class="search-container">
             <div class="search-input">
                 <select name="sheher" onchange="enableDistrict(this)" id="locationSelect">
-                    <option value="" selected disabled>Şəhər seçin</option>
-                    <option th:each="sheher : ${sheherler}" th:value="${sheher.key}" th:text="${sheher.value}"></option>
+                    <option value="">Şəhər seçin</option>
+                    <option th:each="sheher : ${sheherler}" th:value="${sheher.key}" th:text="${sheher.value}"
+                    th:selected="${sheher.key == sheherA} ? 'selected' : null"></option>
                 </select>
                 <img th:src="@{/website/img/location.svg}" alt="Location Icon" />
             </div>
             <div class="search-input">
                 <select name="rayon" disabled id="bakuDistrict">
-                    <option value="" selected disabled>Rayonu seçin</option>
+                    <option value="">Rayonu seçin</option>
+                    <option th:each="rayon : ${rayonlar}" 
+                        th:value="${rayon.key}" 
+                        th:text="${rayon.value}"
+                        th:selected="${rayon.key == rayonA} ? 'selected' : null"></option>
                 </select>
                 <img th:src="@{/website/img/location.svg}" alt="Baku District Icon" />
             </div>
 
-            <div id="defaultRayonlar" style="display:none;">
+            <!-- <div id="defaultRayonlar" style="display:none;">
                 <option value="" selected disabled>Rayonu seçin</option>
                 <option th:each="rayon : ${rayonlar}" 
                         th:value="${rayon.key}" 
-                        th:text="${rayon.value}"></option>
-            </div>
+                        th:text="${rayon.value}"
+                        th:selected="${rayon.key == rayonA} ? 'selected' : null"></option>
+            </div> -->
 
             <div class="search-input">
-                <select name="metro">
+                <select name="metro" id="metrolar" disabled>
                     <option value="" th:text="#{enterUnderground}"></option>
                     <option th:each="metroEl : ${metrolar}" 
                             th:value="${metroEl.key}" 
-                            th:text="${metroEl.value}"></option>
+                            th:text="${metroEl.value}"
+                            th:selected="${metroEl.key == metro} ? 'selected' : null"></option>
                 </select>
                 <img th:src="@{/website/img/metro-svgrepo-com.svg}" alt="Metro Icon" />
             </div>
             <div class="search-input">
-                <input type="text" name="minQiymet" th:value="${minQiymet != null}" placeholder="Min Qiymət" />
+                <input type="text" name="minQiymet" th:value="${minQiymet != null ? minQiymet : null}" placeholder="Min Qiymət" />
                 <img th:src="@{/website/img/money.svg}" alt="Min Budget" />
             </div>
             <div class="search-input">
-                <input type="text" name="maxQiymet" placeholder="Max Qiymət" />
+                <input type="text" name="maxQiymet" th:value="${maxQiymet != null ? maxQiymet : null}" placeholder="Max Qiymət" />
                 <img th:src="@{/website/img/money.svg}" alt="Max Budget" />
             </div>
             <div class="search-input">
                 <select name="otaqSayi">
-                    <option value="" selected disabled>Otaq sayı seçin</option>
-                    <option value="1">1 Otaqlı</option>
-                    <option value="2">2 Otaqlı</option>
-                    <option value="3">3 Otaqlı</option>
-                    <option value="4">4 Otaqlı</option>
-                    <option value="5">5 Otaqlı</option>
-                    <option value="6">6 Otaqlı</option>
-                    <option value="7">7 Otaqlı</option>
-                    <option value="8">8 Otaqlı</option>
-                    <option value="9">9 Otaqlı</option>
-                    <option value="10">10 Otaqlı</option>
-                    <option value="11">11 Otaqlı</option>
-                    <option value="12">12 Otaqlı</option>
-                    <option value="13">13 Otaqlı</option>
-                    <option value="14">14 Otaqlı</option>
-                    <option value="15">15 Otaqlı</option>
-                    <option value="16">16 Otaqlı</option>
-                    <option value="17">17 Otaqlı</option>
-                    <option value="18">18 Otaqlı</option>
-                    <option value="19">19 Otaqlı</option>
-                    <option value="20">20 Otaqlı</option>
+                    <option value="">Otaq sayı seçin</option>
+                    <option value="1" th:selected="${otaqSayi == 1 ? 'selected' : null}">1 Otaqlı</option>
+                    <option value="2" th:selected="${otaqSayi == 2 ? 'selected' : null}">2 Otaqlı</option>
+                    <option value="3" th:selected="${otaqSayi == 3 ? 'selected' : null}">3 Otaqlı</option>
+                    <option value="4" th:selected="${otaqSayi == 4 ? 'selected' : null}">4 Otaqlı</option>
+                    <option value="5" th:selected="${otaqSayi == 5 ? 'selected' : null}">5 Otaqlı</option>
+                    <option value="6" th:selected="${otaqSayi == 6 ? 'selected' : null}">6 Otaqlı</option>
+                    <option value="7" th:selected="${otaqSayi == 7 ? 'selected' : null}">7 Otaqlı</option>
+                    <option value="8" th:selected="${otaqSayi == 8 ? 'selected' : null}">8 Otaqlı</option>
+                    <option value="9" th:selected="${otaqSayi == 9 ? 'selected' : null}">9 Otaqlı</option>
+                    <option value="10" th:selected="${otaqSayi == 10 ? 'selected' : null}">10 Otaqlı</option>
+                    <option value="11" th:selected="${otaqSayi == 11 ? 'selected' : null}">11 Otaqlı</option>
+                    <option value="12" th:selected="${otaqSayi == 12 ? 'selected' : null}">12 Otaqlı</option>
+                    <option value="13" th:selected="${otaqSayi == 13 ? 'selected' : null}">13 Otaqlı</option>
+                    <option value="14" th:selected="${otaqSayi == 14 ? 'selected' : null}">14 Otaqlı</option>
+                    <option value="15" th:selected="${otaqSayi == 15 ? 'selected' : null}">15 Otaqlı</option>
+                    <option value="16" th:selected="${otaqSayi == 16 ? 'selected' : null}">16 Otaqlı</option>
+                    <option value="17" th:selected="${otaqSayi == 17 ? 'selected' : null}">17 Otaqlı</option>
+                    <option value="18" th:selected="${otaqSayi == 18 ? 'selected' : null}">18 Otaqlı</option>
+                    <option value="19" th:selected="${otaqSayi == 19 ? 'selected' : null}">19 Otaqlı</option>
+                    <option value="20" th:selected="${otaqSayi == 20 ? 'selected' : null}">20 Otaqlı</option>
                 </select>
                 <img th:src="@{/website/img/NumOfRooms.png}" alt="Rooms Icon" />
             </div>
             <div class="search-input">
                 <select name="emlakNovu">
-                    <option value="" selected disabled>Emlak növü seçin</option>
-                    <option th:each="emlak : ${emlakNovler}" th:value="${emlak.key}" th:text="${emlak.value}"></option>
+                    <option value="">Emlak növü seçin</option>
+                    <option th:each="emlak : ${emlakNovler}" th:value="${emlak.key}" th:text="${emlak.value}"
+                            th:selected="${emlakNovuA == emlak.key ? 'selected' : null}"></option>
                 </select>
                 <img th:src="@{/website/img/home1.svg}" alt="Property Icon" />
             </div>
             <div class="search-input">
                 <select name="alishKiraye">
-                    <option value="" selected disabled>Alış / Kirayə</option>
-                    <option th:each="alishKir : ${alishKiraye}" th:value="${alishKir.key}" th:text="${alishKir.value}"></option>
+                    <option value="">Alış / Kirayə</option>
+                    <option th:each="alishKir : ${alishKiraye}" th:value="${alishKir.key}" th:text="${alishKir.value}"
+                            th:selected="${alishKirayeA == alishKir.key ? 'selected' : null}"></option>
                 </select>
                 <img th:src="@{/website/img/type.svg}" alt="Deal Type" />
             </div>
@@ -200,7 +209,7 @@
                 </div>
             
                 <div class="footer-links">
-                    <h3>Sürətli Keçidlər</h3>
+                    <h3>Sürətli keçidlər</h3>
                     <ul>
                         <li><a href="indexWeb.html">Alqı Satqı</a></li>
                         <li><a href="indexWeb.html">Kirayə</a></li>
@@ -211,14 +220,14 @@
                 </div>
 
                 <div class="footer-social">
-                    <h3>Bizi İzləyin</h3>
+                    <h3>Bizi izləyin</h3>
                     <ul>
                         <li><a href="https://shorturl.at/yipHj" target="_blank"><i class="bx bxl-instagram"></i></a></li>
                         <li><a href="https://shorturl.at/PEljm" target="_blank"><i class="bx bxl-tiktok"></i></a></li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
+            <div class="footer-bottom" style="margin-top: 20px;">
                 <p>&copy; 2025 Revio.Az - Bütün hüquqlar qorunur.</p>
                 <p><a href="evimfix-terms.html">İstifadə şərtləri və Məxfilik siyasəti</a></p>
             </div>
@@ -228,24 +237,33 @@
     <script>
         function enableDistrict(selectElement) {
             const rayonlar = document.getElementById('bakuDistrict');
-            const optionsContainer = document.getElementById('defaultRayonlar');
-            
-            // Clear select rayonlar
-            rayonlar.innerHTML = '';
-
-            let option = document.createElement('option');
-            option.value = '';
-            option.textContent = 'Rayon seçin';
-            option.disabled = true;
-            option.selected = true;
-            rayonlar.appendChild(option);
+            const metrolar = document.getElementById('metrolar');
             
             if (selectElement.value === '8') {
-                const options = optionsContainer.innerHTML;
-                rayonlar.innerHTML = options;
                 rayonlar.disabled = false; 
+                metrolar.disabled = false; 
+            }
+            
+            else {
+                rayonlar.disabled = true; 
+                metrolar.disabled = true; 
+                metrolar.value = ''; // Reset metro selection
+                rayonlar.value = ''; // Reset district selection
             }
         }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sheherId = document.getElementById('locationSelect').value;
+            const rayonlar = document.getElementById('bakuDistrict');
+            const metrolar = document.getElementById('metrolar');
+
+            if (sheherId === '8') {
+                rayonlar.disabled = false; 
+                metrolar.disabled = false; 
+            }
+        });
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js" integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
