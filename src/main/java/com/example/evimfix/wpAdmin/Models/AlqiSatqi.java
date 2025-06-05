@@ -46,26 +46,24 @@ public class AlqiSatqi {
     @Max(value = 20, message = "Otaq sayı 20-dan çox ola bilməz.")
     private Integer otaqSayi;
 
-    @Min(value = 1, message = "Sahə 1-dən kiçik ola bilməz.")
     private double sahe;
 
-    @Min(value = 1, message = "Mərtəbə 1-dən kiçik ola bilməz.")
-    private Integer mertebe = 0;
+    private Integer mertebe;
 
     @Min(value = 1, message = "Mərtəbə sayı 1-dən kiçik ola bilməz.")
-    private Integer mertebeSayi = 0;
+    private Integer mertebeSayi;
 
-    @NotBlank(message = "Təmiri boş ola bilməz.")
+    @NotNull(message = "Təmiri boş ola bilməz.")
     private int temir;
     
     private String temirAdi;
 
-    @NotBlank(message = "Çıxarış boş ola bilməz.")
+    @NotNull(message = "Çıxarış boş ola bilməz.")
     private int chixarish;
 
     private String chixarishAdi;
 
-    @NotBlank(message = "Şəhər boş ola bilməz.")
+    @NotNull(message = "Şəhər boş ola bilməz.")
     private int sheher;
     
     private String sheherAdi;
@@ -76,7 +74,6 @@ public class AlqiSatqi {
     @Min(value = 1, message = "Mərtəbə sayı 1-dən kiçik ola bilməz.")
     private Integer metro;
 
-    @NotBlank(message = "Metro boş ola bilməz.")
     private String metroAdi; // Buna ui tesir etmir deye validation yoxdu
 
     @NotBlank(message = "Sahibi boş ola bilməz.")
@@ -85,6 +82,10 @@ public class AlqiSatqi {
     @NotBlank(message = "Telefon boş ola bilməz.")
     @Size(min = 13, max = 13, message = "Telefon nömrəsi 13 simvoldan ibarət olmalıdır.")
     private String telefon;
+
+    @Min(value = 1, message = "Düzgün rayon seçilməyib.")
+    private Integer rayon;
+    private String rayonAdi;
 
     private Integer status;
 
@@ -100,4 +101,6 @@ public class AlqiSatqi {
     private MultipartFile[] photos;
 
     private String[] photoPaths; // Foto yolları üçün əlavə sahə
+
+    private String photoPath;
 }

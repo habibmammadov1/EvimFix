@@ -1,0 +1,144 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6" lang="az">
+<head xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="az">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="copyright" content="Copyright &copy; 2024 Pictograph">
+    <meta name="keywords" content="dizayn, dizayn kursları, dizayn kurslari, design, design courses, kurs">
+    <meta name="author" content="Pictograph Academy">
+    <meta name="designer" content="Pictograph Academy">
+    <meta name="description" content="Evimfix - Azərbaycanda kirayə ev tapmaq üçün ən yaxşı platforma.">
+
+    <!-- <link th:href="@{/website/bootstrap-5.3.3-dist/css/bootstrap.min.css}" rel="stylesheet" /> -->
+
+    <link th:href="@{/website/css/style.css}" rel="stylesheet" />
+    <link th:href="@{/website/css/styles2.css}" rel="stylesheet" />
+    <link th:href="@{/website/css/media.css}" rel="stylesheet" />
+
+    <link rel="apple-touch-icon" sizes="76x76" th:href="@{/wpAdmin/img/logoicon.png}">
+    <link rel="icon" type="image/png" th:href="@{/wpAdmin/img/logoicon.png}">
+
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> -->
+
+    <title>Detallar</title>
+    
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a th:href="@{/}"><div class="logo">
+                Evimfix
+            </div></a>
+
+            <ul class="nav-list">
+                <li><a href="index.html" class="list-item">Alqı Satqı</a></li>
+                <li><a href="index.html" class="list-item">Kirayə</a></li>
+                <li><a href="index.html" class="list-item">Günlük</a></li>
+                <li><a href="aboutUs.html" class="list-item">Haqqımızda</a></li>
+                <li><a href="contactUs.html" class="list-item contact">Bizimlə Əlaqə</a></li>
+            </ul>
+
+            <div class="mobile-menu" onclick="showMenu()">
+                <div class="line line1" style="background-color: #505050;"></div>
+                <div class="line line2" style="background-color: #505050;"></div>
+                <div class="line line3" style="background-color: #505050;"></div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="property-detail">
+        <h3 style="padding-left: 10px; padding-bottom:15px; color: #525252;" id="property-title">
+            <span th:text="${alqiSatqi.sheherAdi + ' şəhəri'}"></span>
+            <span th:if="${alqiSatqi.rayonAdi != null}" th:text="', ' + ${alqiSatqi.rayonAdi}"></span>
+        </h3>
+        <div class="property-images">
+            <button class="prev-btn">&#10094;</button>
+
+            <div th:each="photo : ${alqiSatqi.photoPaths}">
+                <img th:src="@{'/buildingPhotos/' + ${photo}}" class="property-slide" style="display: none; background-size: cover;" loading="lazy">
+            </div>
+            <div class="slide-indicators"></div>
+            
+            <button class="next-btn">&#10095;</button>
+        </div>
+
+        <div class="property-content">
+            <div class="property-description">
+                <h2 id="property-title" th:text="${alqiSatqi.bashliq}">Ev Başlığı</h2>
+                <p id="property-description" th:text="${alqiSatqi.haqqinda}">
+                </p>
+            </div>
+
+            <div class="property-contact">
+                <h3>Əlaqə Məlumatları və Detallar:</h3>
+                <ul>
+                    <li><strong>Nömrə:</strong> <span id="property-number" th:text="${alqiSatqi.id}"></span></li>
+                    <li><strong>Tip:</strong> <span id="property-type" th:text="${alqiSatqi.menzilNovAdi}">Mənzil</span></li>
+                    <li><strong>Sahə:</strong> <span id="property-area" th:text="${alqiSatqi.sahe}"></span></li>
+                    <li><strong>Qiymət:</strong> <span id="property-price" th:text="${alqiSatqi.qiymet} + ' M²'"></span></li>
+                    <li><strong>Ünvan:</strong> <span id="property-address" th:text="${alqiSatqi.unvan}"></span></li>
+                    <li><strong>Metro:</strong> <span id="property-nearby-metro" th:text="${alqiSatqi.metroAdi}"></span></li>
+                    <li><strong>Ad:</strong> <span id="property-seller-name" th:text="${alqiSatqi.sahibi}"></span></li>
+                    <li><strong>Əlaqə:</strong>📞 <a href="tel:+994505131380" id="property-contact"  th:text="${alqiSatqi.telefon}"></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="property-map">
+            <h3>Yerləşmə Xəritəsi</h3>
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7951.325843262112!2d49.83895840064746!3d40.
+              38208197720522!3m2!1i1024!2i768!4f13.1!3m3!1m2!
+              1s0x40307d6b66f4e8bb%3A0xf9974561a251d4a5!2s%2228%20May%22%20metro%20station!5e0!3m2!1sen!2saz!4v1746436355644!5m2!1sen!2saz" 
+              width="100%" 
+              height="350" 
+              style="border:0; border-radius: 10px;" 
+              allowfullscreen="" 
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+        <!-- Before closing </body> -->
+        <div class="mobile-call-btn">
+            <a href="tel:+994505131380">📞 Operatora Zəng Et</a>
+        </div>
+    </section>
+
+    <section class="footer" id="footer">
+        <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3><a href="index.html">Evimfix</a></h3>
+                <p>Sizə lazım olan tək platforma – EvimFix.</p>
+            </div>
+          
+            <div class="footer-links">
+                <h3>Sürətli Keçidlər</h3>
+                <ul>
+                    <li><a href="index.html">Alqı Satqı</a></li>
+                    <li><a href="index.html">Kirayə</a></li>
+                    <li><a href="index.html">Günlük</a></li>
+                    <li><a href="aboutUs.html">Haqqımızda</a></li>
+                    <li><a href="contactUs.html">Bizimlə Əlaqə</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-social">
+                <h3>Bizi İzləyin</h3>
+                <ul>
+                    <li><a href="https://shorturl.at/yipHj" target="_blank"><i class="bx bxl-instagram"></i></a></li>
+                    <li><a href="https://shorturl.at/PEljm" target="_blank"><i class="bx bxl-tiktok"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        </footer>
+    </section>
+
+    <script th:src="@{/website/js/property-detail.js}"></script>
+</body>

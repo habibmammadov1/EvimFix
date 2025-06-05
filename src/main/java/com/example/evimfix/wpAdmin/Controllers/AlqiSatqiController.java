@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.evimfix.wpAdmin.Models.AlqiSatqi;
 import com.example.evimfix.wpAdmin.Services.AlqiSatqiService;
+
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/wp-admin")
@@ -60,6 +63,10 @@ public class AlqiSatqiController {
         // DB-den ehtiyacim olan melumatlar
         model.addObject("emlakNovleri", alqiSatqiService.getEmlakNovleri());
         model.addObject("alishKirayeNovler", alqiSatqiService.getAlishKirayeNovler());
+        model.addObject("sheherler", alqiSatqiService.getSheherler());
+        model.addObject("rayonlar", alqiSatqiService.getRayonlar());
+        model.addObject("metrolar", alqiSatqiService.getMetrolar());
+        
 
         AlqiSatqi alqiSatqi = alqiSatqiService.getAlqiSatqiById(id).get();
 
@@ -75,9 +82,16 @@ public class AlqiSatqiController {
     }
 
     @PostMapping("/alqi-satqi/update")
-    public ModelAndView updateAlqiSatqi(AlqiSatqi alqiSatqi, RedirectAttributes redirectAttributes) throws ParseException {
+    public ModelAndView updateAlqiSatqi(@Valid @ModelAttribute("alqiSatqi") AlqiSatqi alqiSatqi, BindingResult bindingResult, RedirectAttributes redirectAttributes) throws ParseException {
         ModelAndView model = new ModelAndView();
         model.setViewName("redirect:/wp-admin/getAlqiSatqi?id=" + alqiSatqi.getId());
+
+        // Validate the AlqiSatqi object
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.alqiSatqi", bindingResult);
+            redirectAttributes.addFlashAttribute("alqiSatqi", alqiSatqi); // Important!
+            return model;
+        }
         
         String result = alqiSatqiService.updateAlqiSatqi(alqiSatqi);
         redirectAttributes.addFlashAttribute("result", result);
@@ -94,6 +108,9 @@ public class AlqiSatqiController {
         // DB-den ehtiyacim olan melumatlar
         model.addObject("emlakNovleri", alqiSatqiService.getEmlakNovleri());
         model.addObject("alishKirayeNovler", alqiSatqiService.getAlishKirayeNovler());
+        model.addObject("sheherler", alqiSatqiService.getSheherler());
+        model.addObject("rayonlar", alqiSatqiService.getRayonlar());
+        model.addObject("metrolar", alqiSatqiService.getMetrolar());
         
         AlqiSatqi alqiSatqi = new AlqiSatqi();
         model.addObject("alqiSatqi", alqiSatqi);

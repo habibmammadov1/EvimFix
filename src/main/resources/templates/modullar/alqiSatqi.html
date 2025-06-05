@@ -1,6 +1,52 @@
 <!DOCTYPE html>
 <html lang="az">
-    <head th:replace="/template/head :: head"></head>   
+    <head th:replace="/template/head :: head">
+    
+    </head>  
+    <style>
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .photo-container {
+            position: relative;
+        }
+        
+        .photo-thumbnail {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+            padding: 5px;
+        }
+        
+        .delete-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .delete-btn:hover {
+            opacity: 1;
+        }
+    </style> 
     <body class="g-sidenav-show bg-dark">
         <div class="min-height-300 bg-dark position-absolute w-100"></div>
         <aside th:replace="/template/menu :: menu"></aside>   
@@ -64,9 +110,9 @@
               </div>
             </div>
             
-            <form class="text-white" th:object="${alqiSatqi}" 
+            <form th:object="${alqiSatqi}" onsubmit="return checkAbout('aboutA')" 
                   th:action="@{/wp-admin/alqi-satqi/update}" 
-                  method="post">
+                  method="post" enctype="multipart/form-data">
 
               <input type="hidden" th:field="*{id}" />
               <div class="row ms-3 w-90">
@@ -74,12 +120,13 @@
                   <label for="title" class="text-white" th:text="#{title}"></label> <span style="color: red;">*</span>
                   <input type="text" required class="form-control" id="title" th:field="*{bashliq}" 
                          aria-describedby="title" th:placeholder="#{enterTitle}">
+                  <div th:if="${#fields.hasErrors('bashliq')}" th:errors="*{bashliq}" class="text-red"></div>
                 </div>     
                 
                 <div class="form-group w-20">
                   <label for="buildingType" class="text-white" th:text="#{buildingType}"></label> <span style="color: red;">*</span>
                   <select class="form-select" name="kirayeSatish" id="buildingType" required aria-describedby="buildingType">
-                      <option value="" th:text="#{buildingType}" hidden></option>
+                      <option value="" th:text="#{buildingType}" disabled></option>
                       <option th:each="alishKirayeNov : ${alishKirayeNovler}" 
                               th:value="${alishKirayeNov.key}" 
                               th:text="${alishKirayeNov.value}"
@@ -98,7 +145,7 @@
                   <div class="form-group w-15">
                     <label for="houseType" class="text-white" th:text="#{houseType}"></label> <span style="color: red;">*</span>
                     <select class="form-select" id="houseType" name="menzilNov" required aria-describedby="houseType">
-                        <option value="" hidden>Əmlak növü</option>
+                        <option value="" disabled>Əmlak növü</option>
                         <option th:each="emlak : ${emlakNovleri}" 
                                 th:value="${emlak.key}" 
                                 th:text="${emlak.value}"
@@ -134,7 +181,7 @@
               <div class="row ms-3 w-90">
                   <div class="form-group w-10 d-flex align-items-center">
                    <label class="custom-toggle text-white">
-                      <input type="checkbox" name="temir" th:value="${alqiSatqi.temir}" th:checked="${alqiSatqi.temir == 1}">
+                      <input type="checkbox" name="temir" onchange="checkboxValue(this)" th:value="${alqiSatqi.temir}" th:checked="${alqiSatqi.temir == 1}">
                       <span class="custom-toggle-slider rounded-circle pe-1"></span>
                       Təmirli
                    </label>
@@ -142,20 +189,31 @@
                   
                   <div class="form-group w-15 d-flex align-items-center">
                     <label class="custom-toggle text-white">
-                      <input type="checkbox" name="chixarish" th:value="${alqiSatqi.chixarish}" th:checked="${alqiSatqi.chixarish == 1}">
+                      <input type="checkbox" name="chixarish" onchange="checkboxValue(this)" th:value="${alqiSatqi.chixarish}" th:checked="${alqiSatqi.chixarish == 1}">
                       <span class="custom-toggle-slider rounded-circle pe-1"></span>
                       Çıxarışı var
                     </label>
                   </div>
 
                   <div class="form-group w-20">
-                    <label for="houseType" class="text-white" th:text="#{city}"></label> <span style="color: red;">*</span>
+                    <label for="city" class="text-white" th:text="#{city}"></label> <span style="color: red;">*</span>
                     <select class="form-select" id="city" name="sheher" required aria-describedby="city">
-                        <option value="" th:text="#{enterCity}" hidden></option>
-                        <option th:each="emlak : ${emlakNovleri}" 
-                                th:value="${emlak.key}" 
-                                th:text="${emlak.value}"
-                                th:selected="${emlak.key == alqiSatqi.sheher} ? 'selected' : null"></option>
+                        <option value="" th:text="#{enterCity}"></option>
+                        <option th:each="sheher : ${sheherler}" 
+                                th:value="${sheher.key}" 
+                                th:text="${sheher.value}"
+                                th:selected="${sheher.key == alqiSatqi.sheher} ? 'selected' : null"></option>
+                    </select>
+                  </div> 
+
+                  <div class="form-group w-20">
+                    <label for="rayon" class="text-white" th:text="#{rayon}"></label>
+                    <select class="form-select" id="rayon" name="rayon" aria-describedby="rayon">
+                        <option value="" th:text="#{enterRayon}" disabled></option>
+                        <option th:each="rayon : ${rayonlar}" 
+                                th:value="${rayon.key}" 
+                                th:text="${rayon.value}"
+                                th:selected="${rayon.key == alqiSatqi.rayon} ? 'selected' : null"></option>
                     </select>
                   </div> 
 
@@ -171,8 +229,8 @@
                   <div class="form-group w-20">
                     <label for="underground" class="text-white" th:text="#{underground}"></label>
                     <select class="form-select" name="metro" id="underground" aria-describedby="underground">
-                        <option value="" th:text="#{enterUnderground}" hidden></option>
-                        <option th:each="metroEl : ${emlakNovleri}" 
+                        <option value="" th:text="#{enterUnderground}"></option>
+                        <option th:each="metroEl : ${metrolar}" 
                                 th:value="${metroEl.key}" 
                                 th:text="${metroEl.value}"
                                 th:selected="${metroEl.key == alqiSatqi.metro} ? 'selected' : null"></option>
@@ -204,13 +262,27 @@
               <div class="row ms-3 w-90">
                   <div class="form-group ms-0 w-80">
                     <label for="about" class="text-white" th:text="#{description}"></label> <span style="color: red;">*</span>
-                    <textarea class="form-control border-2 border-dark" id="about" th:field="*{haqqinda}" 
+                    <textarea class="form-control" required style="color: black;" id="aboutA" name="haqqinda" th:text="${alqiSatqi.haqqinda}" th:value="${alqiSatqi.haqqinda}" 
                               aria-describedby="about" th:placeholder="#{enterDescription}"></textarea>
                   </div>
               </div>
 
-              <div th:if="${not #lists.isEmpty(alqiSatqi.photoPaths)}" class="gallery">
-                  <div th:each="file : ${alqiSatqi.photoPaths}" class="photo-card">
+              <div class="row ms-3 w-90">
+                  <div class="form-group ms-0 w-80">
+                      <label for="photo" class="text-white" th:text="#{photos}"></label>
+                      <input class="form-control" id="photo" type="file" name="photos" onchange="newPhotoContainer(this)" multiple accept="image/*">
+                      <p style="font-size: 12px; color: #fff;">* Yeni foto əlavə etdiyiniz təqdirdə köhnə fotoların hamısı silinəcək və onları yeni fotolar əvəz edəcək.</p>
+                  </div>
+              </div>
+              <div th:if="${not #lists.isEmpty(alqiSatqi.photoPaths)}" class="gallery" id="gallery"
+              style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; padding: 20px;">
+                  <div th:each="file : ${alqiSatqi.photoPaths}" class="photo-card photo-container" th:data-filename="${file}">
+                      <!-- Delete Button -->
+                      <!-- <button class="delete-btn" 
+                              th:onclick="markForDeletion(this, event)">
+                          ×
+                      </button> -->
+        
                       <!-- Display the image -->
                       <img class="row ms-3" th:src="@{/buildingPhotos/} + ${file}" alt="Uploaded photo" 
                            style="width: 250px; height: 200px; background-size: contain; object-fit: contain; border: 1px solid #ddd; border-radius: 4px;" />
@@ -223,14 +295,30 @@
 
         <script type="text/javascript">
           function checkAbout(fieldId) {
-            let courseContent = document.getElementById(fieldId);
-            courseContent.focus();
-            if (courseContent.text().trim() === '' || courseContent.value === null) {
-              alert("About field is required.");              
+            let aboutContent = document.getElementById(fieldId);
+            aboutContent.focus();
+            if (aboutContent.text === undefined) {
+              alert("\"Haqqında\" hissəsini doldurun.");              
               return false;
             }
             
             return true;
+          }
+        </script>
+
+        <script>
+          function newPhotoContainer(){
+            document.getElementById('gallery').innerHTML = "";
+          }
+        </script>
+
+        <script>
+          function checkboxValue(checkbox) {
+            if (checkbox.checked) {
+                checkbox.value = 1; // Checked
+            } else {
+                checkbox.value = 0; // Unchecked
+            }
           }
         </script>
 

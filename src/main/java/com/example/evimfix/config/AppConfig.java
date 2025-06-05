@@ -17,6 +17,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+import com.example.evimfix.wpAdmin.Repositories.Helper.HelperRepository;
+import com.example.evimfix.wpAdmin.Utils.Mappers.AlqiSatqiRowMapper;
+
 @Configuration
 public class AppConfig implements WebMvcConfigurer {
     @Value("${file.upload-dir}")
@@ -56,5 +59,10 @@ public class AppConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/uploads/**")
                 .addResourceLocations("file:" + uploadDir);
+    }
+
+    @Bean
+    public AlqiSatqiRowMapper alqisatqiRowMapper(HelperRepository helperRepository) {
+        return new AlqiSatqiRowMapper(helperRepository);
     }
 }
