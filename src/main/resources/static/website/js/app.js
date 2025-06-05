@@ -137,10 +137,10 @@ function setupPropertyCards() {
         }
 
         //Click handler for entire card
-        card.addEventListener('click', function(event) {
-            if (event.target.closest('.favorite-btn')) return;
-            window.location.href = 'property-detail.html?id=' + card.dataset.propertyId;
-        });
+        // card.addEventListener('click', function(event) {
+        //     if (event.target.closest('.favorite-btn')) return;
+        //     window.location.href = 'property-detail.html?id=' + card.dataset.propertyId;
+        // });
     });
 }
 
