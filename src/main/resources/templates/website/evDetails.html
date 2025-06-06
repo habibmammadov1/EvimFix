@@ -29,24 +29,31 @@
 </head>
 
 <body>
+
     <nav class="navbar">
         <div class="container">
-            <a th:href="@{/}"><div class="logo">
-                Evimfix
-            </div></a>
+            <a href="index.html"><div class="logo">Evimfix</div></a>
 
             <ul class="nav-list">
                 <li><a href="index.html" class="list-item">Alqı Satqı</a></li>
-                <li><a href="index.html" class="list-item">Kirayə</a></li>
-                <li><a href="index.html" class="list-item">Günlük</a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="list-item dropdown-toggle">Kirayə</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="?type=daily" class="dropdown-item">Kirayə Günlük</a></li>
+                        <li><a href="?type=monthly" class="dropdown-item">Kirayə Aylıq</a></li>
+                    </ul>
+                </li>
+
                 <li><a href="aboutUs.html" class="list-item">Haqqımızda</a></li>
-                <li><a href="contactUs.html" class="list-item contact">Bizimlə Əlaqə</a></li>
+                <li><a href="favorites.html" class="list-item">Sevimlilər</a></li>
+                <li><a href="contactUs.html" class="list-item">Bizimlə Əlaqə</a></li>
             </ul>
 
             <div class="mobile-menu" onclick="showMenu()">
-                <div class="line line1" style="background-color: #505050;"></div>
-                <div class="line line2" style="background-color: #505050;"></div>
-                <div class="line line3" style="background-color: #505050;"></div>
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+                <div class="line line3"></div>
             </div>
         </div>
     </nav>
@@ -144,4 +151,5 @@
     </section>
 
     <script th:src="@{/website/js/property-detail.js}"></script>
+    
 </body>
