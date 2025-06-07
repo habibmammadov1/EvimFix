@@ -1,10 +1,13 @@
 package com.example.evimfix.wpAdmin.Services;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.evimfix.wpAdmin.Models.AlqiSatqi;
 import com.example.evimfix.wpAdmin.Repositories.AlqiSatqiRepository;
 import com.example.evimfix.wpAdmin.Repositories.Helper.HelperRepository;
+
+import net.coobird.thumbnailator.Thumbnails;
 
 @Service
 public class AlqiSatqiService {
@@ -38,6 +43,8 @@ public class AlqiSatqiService {
             if (!Files.exists(uploadPath)) {
                 Files.createDirectories(uploadPath);
             }
+
+            byte[] compressedImage = compressImage(file.getBytes());
             
             // Generate unique filename
             String originalFileName = file.getOriginalFilename();
@@ -46,7 +53,8 @@ public class AlqiSatqiService {
             
             // Save file
             Path targetLocation = uploadPath.resolve(uniqueFileName);
-            Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+            //Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+            Files.write(targetLocation, compressedImage);
             
             return alqiSatqiRepository.addPhoto(uniqueFileName, alqiSatqiId);
         } catch (IOException e) {
@@ -83,11 +91,25 @@ public class AlqiSatqiService {
     }
 
     public String updateAlqiSatqi(AlqiSatqi alqiSatqi) throws ParseException {
-        System.out.println(alqiSatqi.getPhotos()[0].getSize());
+        //System.out.println(alqiSatqi.getPhotos()[0].getSize());
         if (alqiSatqi.getPhotos()[0].getSize() > 0 && alqiSatqi.getPhotos().length > 0) {
             int alqiSatqiId = alqiSatqi.getId();
 
-            deleteAlqiSatqiPhotos(alqiSatqiId);
+            // Kohne fotolari yer tutmasin deye folderden silirik
+            String[] existingPhotos = alqiSatqiRepository.getAlqiSatqiPhotos(alqiSatqiId);
+            for (String photo : existingPhotos) {
+                try {
+                    deleteFile(photo);
+                } catch (FileNotFoundException e) {
+                    // Foto tapilmadi, davam et
+                    System.out.println("Foto tapilmadi: " + photo);
+                } catch (IOException e) {
+                    // Foto silinende problem yarandi
+                    return "Foto silinende problem yarandi: " + e.getMessage();
+                }
+            }
+
+            deleteAlqiSatqiPhotos(alqiSatqiId); // Db den fotoları silirik            
 
             for (MultipartFile path : alqiSatqi.getPhotos()) {
                 if (!path.isEmpty()) {
@@ -141,5 +163,26 @@ public class AlqiSatqiService {
 
     public List<AlqiSatqi> getAllAlqiSatqiByCategories(Integer sheher, Integer rayon, Integer metro, Double minQiymet, Double maxQiymet, Integer otaqSayi, Integer emlakNovu, Integer alishKiraye) {
         return alqiSatqiRepository.getAllAlqiSatqiByCategories(sheher, rayon, metro, minQiymet, maxQiymet, otaqSayi, emlakNovu, alishKiraye);
+    }
+
+    // Helper metodlar
+    public byte[] compressImage(byte[] imageBytes) throws IOException {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        Thumbnails.of(new ByteArrayInputStream(imageBytes))
+            .size(1024, 1024) // Set max width/height
+            .outputFormat("jpg") // Convert to JPEG which is smaller than PNG
+            .outputQuality(0.7) // Quality ratio (0.0-1.0)
+            .toOutputStream(outputStream);
+        return outputStream.toByteArray();
+    }
+
+    public void deleteFile(String fileName) throws IOException {
+        Path filePath = Paths.get(uploadDir).resolve(fileName).normalize();
+        
+        try {
+            Files.delete(filePath);
+        } catch (NoSuchFileException e) {
+            throw new FileNotFoundException("File not found: " + fileName);
+        }
     }
 }

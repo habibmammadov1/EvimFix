@@ -114,8 +114,12 @@
                   th:action="@{/wp-admin/alqi-satqi/update}" 
                   method="post" enctype="multipart/form-data">
 
-              <input type="hidden" th:field="*{id}" />
               <div class="row ms-3 w-90">
+                <div class="form-group w-15">
+                  <label for="id" class="text-white">Elan nömrəsi</label> <span style="color: red;">*</span>
+                  <input type="text" required class="form-control" disabled id="id" th:field="*{id}" 
+                         aria-describedby="id">
+                </div>  
                 <div class="form-group w-25">
                   <label for="title" class="text-white" th:text="#{title}"></label> <span style="color: red;">*</span>
                   <input type="text" required class="form-control" id="title" th:field="*{bashliq}" 
@@ -262,8 +266,9 @@
               <div class="row ms-3 w-90">
                   <div class="form-group ms-0 w-80">
                     <label for="about" class="text-white" th:text="#{description}"></label> <span style="color: red;">*</span>
-                    <textarea class="form-control" required style="color: black;" id="aboutA" name="haqqinda" th:text="${alqiSatqi.haqqinda}" th:value="${alqiSatqi.haqqinda}" 
-                              aria-describedby="about" th:placeholder="#{enterDescription}"></textarea>
+                    <textarea class="form-control" required id="aboutA" name="haqqinda" th:text="${alqiSatqi.haqqinda}" 
+                              th:value="${alqiSatqi.haqqinda}" aria-describedby="about" th:placeholder="#{enterDescription}"></textarea>
+                    <!-- <input class="form-control"  id="aboutA" th:field="*{haqqinda}" placeholder="salam" /> -->
                   </div>
               </div>
 

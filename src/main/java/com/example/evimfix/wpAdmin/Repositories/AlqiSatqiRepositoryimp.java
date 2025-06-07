@@ -207,7 +207,7 @@ public class AlqiSatqiRepositoryimp implements AlqiSatqiRepository {
         MapSqlParameterSource params = new MapSqlParameterSource()
             .addValue("bashliq", alqiSatqi.getBashliq())
             .addValue("qiymet", alqiSatqi.getQiymet())
-            .addValue("haqqinda", Jsoup.clean(alqiSatqi.getHaqqinda(), Safelist.none()))
+            .addValue("haqqinda", alqiSatqi.getHaqqinda())
             .addValue("menzilNov", alqiSatqi.getMenzilNov())
             .addValue("otaqSayi", alqiSatqi.getOtaqSayi())
             .addValue("sahe", alqiSatqi.getSahe())
@@ -420,5 +420,17 @@ public class AlqiSatqiRepositoryimp implements AlqiSatqiRepository {
                                                 .addValue("alishKiraye", alishKiraye);
 
         return namedParameterJdbcTemplate.query(query, namedParameters, alqiSatqiRowMapper);
+    }
+
+    @Override
+    public String[] getAlqiSatqiPhotos(int alqiSatqiId) {
+        String query = "select t.photopath from HM_TIKILILER_PHOTOS t where t.tikili_id = :tikili_id";
+
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                                                .addValue("tikili_id", alqiSatqiId);
+
+        List<String> photos = namedParameterJdbcTemplate.queryForList(query, namedParameters, String.class);
+
+        return photos.toArray(new String[0]);
     }
 }

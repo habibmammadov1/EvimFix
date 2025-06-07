@@ -18,6 +18,7 @@ public interface AlqiSatqiRepository {
     String deleteAlqiSatqi(int id);
     String deleteAlqiSatqiPhotos(int id);
     String addPhoto(String photoPath, int alqiSatqiId);
+    String[] getAlqiSatqiPhotos(int alqiSatqiId);
 
     // DBden ehtiyacim olan melumatlar
     HashMap<Integer, String> getEmlakNovleri();
