@@ -1,0 +1,9 @@
+<persistence-unit name="oracleNgrokPU">
+    <properties>
+          <property name="javax.persistence.jdbc.url" 
+                  value="jdbc:oracle:thin:@//4.tcp.eu.ngrok.io:13234/EVIMFIX"/>
+        <property name="javax.persistence.jdbc.user" value="EVIMFIX"/>
+        <property name="javax.persistence.jdbc.password" value="1qa2ws3ed"/>
+        <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+    </properties>
+</persistence-unit>
