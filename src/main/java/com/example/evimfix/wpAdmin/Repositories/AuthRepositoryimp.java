@@ -1,6 +1,7 @@
 package com.example.evimfix.wpAdmin.Repositories;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -177,20 +178,17 @@ public class AuthRepositoryimp implements AuthRepository {
     }
 
     @Override
-    public Optional<Auth> getUserTest() {
+    public HashMap<Integer, String> getUserTest() {
         String query = "select t.id, t.name from HM_USERS t";
+
+        HashMap<Integer, String> emlakNovleri = new HashMap<>();
         
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(query);
         
-        if (rows.isEmpty()) {
-            return Optional.empty();
+        for (Map<String, Object> map : rows) {
+            emlakNovleri.put(Integer.valueOf(String.valueOf(map.get("id"))), (String) map.get("name")) ;
         }
-        
-        Map<String, Object> firstRow = rows.get(0);
-        Auth auth = new Auth();
-        auth.setId((Integer) firstRow.get("id"));
-        auth.setUsername((String) firstRow.get("name"));
-        
-        return Optional.of(auth);
+
+        return emlakNovleri;
     }
 }

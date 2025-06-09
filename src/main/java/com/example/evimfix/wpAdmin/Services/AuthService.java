@@ -1,6 +1,7 @@
 package com.example.evimfix.wpAdmin.Services;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -146,7 +147,7 @@ public class AuthService implements UserDetailsService {
         return true;
     }
 
-    public Auth getUserTest() {
-        return authRepository.getUserTest().orElse(null);
+    public HashMap<Integer, String> getUserTest() {
+        return authRepository.getUserTest();
     }
 }
