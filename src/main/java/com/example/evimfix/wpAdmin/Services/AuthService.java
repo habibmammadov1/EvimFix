@@ -145,4 +145,8 @@ public class AuthService implements UserDetailsService {
         verificationTokenService.removeToken(secureToken);
         return true;
     }
+
+    public Auth getUserTest() {
+        return authRepository.getUserTest().orElse(null);
+    }
 }

@@ -174,5 +174,23 @@ public class AuthRepositoryimp implements AuthRepository {
             
             return cs.getString(1);
         });
-    }  
+    }
+
+    @Override
+    public Optional<Auth> getUserTest() {
+        String query = "select t.id, t.name from HM_USERS t";
+        
+        List<Map<String, Object>> rows = jdbcTemplate.queryForList(query);
+        
+        if (rows.isEmpty()) {
+            return Optional.empty();
+        }
+        
+        Map<String, Object> firstRow = rows.get(0);
+        Auth auth = new Auth();
+        auth.setId((Integer) firstRow.get("id"));
+        auth.setUsername((String) firstRow.get("name"));
+        
+        return Optional.of(auth);
+    }
 }

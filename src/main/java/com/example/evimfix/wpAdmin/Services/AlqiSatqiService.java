@@ -138,7 +138,6 @@ public class AlqiSatqiService {
 
         return !id_result.contains("ORA") ? "OK" : "Problem baş verdi, yenidən yoxlayın";
     }
-
     
     // DBden ehtiyacim olan melumatlar
     public HashMap<Integer, String> getEmlakNovleri() {

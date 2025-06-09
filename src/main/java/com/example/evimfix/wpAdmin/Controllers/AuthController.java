@@ -209,4 +209,6 @@ public class AuthController {
         redirectAttributes.addFlashAttribute("message", messageSource.getMessage("validated", null, LocaleContextHolder.getLocale()));
         return REDIRECT_LOGIN;
     }
+
+    
 }
