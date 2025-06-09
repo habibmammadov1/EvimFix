@@ -143,7 +143,7 @@ public class AlqiSatqiRepositoryimp implements AlqiSatqiRepository {
 
     @Override
     public HashMap<Integer, String> getEmlakNovleri() {
-        String sql = "select t.id, t.emlak_novu from HM_MENZIL_NOVLERI t";
+        String sql = "select t.id, t.emlak_novu from HM_MENZIL_NOVLERI2 t";
 
         HashMap<Integer, String> emlakNovleri = new HashMap<>();
 
