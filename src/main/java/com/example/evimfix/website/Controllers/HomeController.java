@@ -39,6 +39,7 @@ public class HomeController {
         model.addObject("sheherA", sheher);
         model.addObject("rayonA", rayon);
         model.addObject("metro", metro);
+
         model.addObject("minQiymet", minQiymet);
         model.addObject("maxQiymet", maxQiymet);
         model.addObject("otaqSayi", otaqSayi);
