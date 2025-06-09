@@ -18,40 +18,40 @@ public class HomeController {
     @Autowired
     private AuthService authService;
 
-    // @GetMapping("/")
-    // public ModelAndView index(
-    //                         @RequestParam(required = false) Integer sheher,
-    //                         @RequestParam(required = false) Integer rayon,
-    //                         @RequestParam(required = false) Integer metro,
-    //                         @RequestParam(required = false) Double minQiymet,
-    //                         @RequestParam(required = false) Double maxQiymet,
-    //                         @RequestParam(required = false) Integer otaqSayi,
-    //                         @RequestParam(required = false) Integer emlakNovu,
-    //                         @RequestParam(required = false) Integer alishKiraye
-    // ){
-    //     ModelAndView model = new ModelAndView("/website/indexWeb");
-    //     model.addObject("sheherler", alqiSatqiService.getSheherler());
-    //     model.addObject("alishKiraye", alqiSatqiService.getAlishKirayeNovler());
-    //     model.addObject("emlakNovler", alqiSatqiService.getEmlakNovleri());
-    //     model.addObject("rayonlar", alqiSatqiService.getRayonlar());
-    //     model.addObject("metrolar", alqiSatqiService.getMetrolar());
+    @GetMapping("/")
+    public ModelAndView index(
+                            @RequestParam(required = false) Integer sheher,
+                            @RequestParam(required = false) Integer rayon,
+                            @RequestParam(required = false) Integer metro,
+                            @RequestParam(required = false) Double minQiymet,
+                            @RequestParam(required = false) Double maxQiymet,
+                            @RequestParam(required = false) Integer otaqSayi,
+                            @RequestParam(required = false) Integer emlakNovu,
+                            @RequestParam(required = false) Integer alishKiraye
+    ){
+        ModelAndView model = new ModelAndView("/website/indexWeb");
+        model.addObject("sheherler", alqiSatqiService.getSheherler());
+        model.addObject("alishKiraye", alqiSatqiService.getAlishKirayeNovler());
+        model.addObject("emlakNovler", alqiSatqiService.getEmlakNovleri());
+        model.addObject("rayonlar", alqiSatqiService.getRayonlar());
+        model.addObject("metrolar", alqiSatqiService.getMetrolar());
 
-    //     model.addObject("sheherA", sheher);
-    //     model.addObject("rayonA", rayon);
-    //     model.addObject("metro", metro);
-    //     model.addObject("minQiymet", minQiymet);
-    //     model.addObject("maxQiymet", maxQiymet);
-    //     model.addObject("otaqSayi", otaqSayi);
-    //     model.addObject("emlakNovuA", emlakNovu);
-    //     model.addObject("alishKirayeA", alishKiraye);
+        model.addObject("sheherA", sheher);
+        model.addObject("rayonA", rayon);
+        model.addObject("metro", metro);
+        model.addObject("minQiymet", minQiymet);
+        model.addObject("maxQiymet", maxQiymet);
+        model.addObject("otaqSayi", otaqSayi);
+        model.addObject("emlakNovuA", emlakNovu);
+        model.addObject("alishKirayeA", alishKiraye);
 
 
-    //     model.addObject("alqiSatqiList", alqiSatqiService.getAllAlqiSatqiByCategories(
-    //         sheher, rayon, metro, minQiymet, maxQiymet, otaqSayi, emlakNovu, alishKiraye
-    //     ));
+        model.addObject("alqiSatqiList", alqiSatqiService.getAllAlqiSatqiByCategories(
+            sheher, rayon, metro, minQiymet, maxQiymet, otaqSayi, emlakNovu, alishKiraye
+        ));
 
-    //     return model;
-    // }
+        return model;
+    }
 
     @GetMapping("/property")
     public ModelAndView property(@RequestParam int id) {
@@ -66,15 +66,6 @@ public class HomeController {
         else{
             model.setViewName("redirect:/");
         }        
-
-        return model;
-    }
-
-    @GetMapping("/")
-    public ModelAndView index(){
-        ModelAndView model = new ModelAndView("/website/indexWeb2");
-        
-        model.addObject("users", authService.getUserTest());
 
         return model;
     }
