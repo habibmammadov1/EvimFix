@@ -36,9 +36,9 @@
                                    <p style="cursor: pointer; color: #15114f; font-weight: 500; text-decoration: underline;" 
                                    th:text="${user.username}"></p>
                                 </a>
-                                <div th:if="${!user.enabled}" class="tooltip2">!
+                                <!-- <div th:if="${!user.enabled}" class="tooltip2">!
                                   <div class="tooltip-text2" th:text="#{notValidated}"></div>
-                                </div>
+                                </div> -->
                             </td>
                             <td th:text="${user.roleName}"></td>
                             <td th:if="${user.id != 1}">
