@@ -35,19 +35,19 @@
             <a href="index.html"><div class="logo">Evimfix</div></a>
 
             <ul class="nav-list">
-                <li><a href="index.html" class="list-item">Alqı Satqı</a></li>
+                <li><a href="index.html" class="list-item">Alqı-satqı</a></li>
 
                 <li class="dropdown">
                     <a href="#" class="list-item dropdown-toggle">Kirayə</a>
                     <ul class="dropdown-menu">
-                        <li><a href="?type=daily" class="dropdown-item">Kirayə Günlük</a></li>
-                        <li><a href="?type=monthly" class="dropdown-item">Kirayə Aylıq</a></li>
+                        <li><a href="?type=daily" class="dropdown-item">Kirayə günlük</a></li>
+                        <li><a href="?type=monthly" class="dropdown-item">Kirayə aylıq</a></li>
                     </ul>
                 </li>
 
                 <li><a href="aboutUs.html" class="list-item">Haqqımızda</a></li>
                 <li><a href="favorites.html" class="list-item">Sevimlilər</a></li>
-                <li><a href="contactUs.html" class="list-item">Bizimlə Əlaqə</a></li>
+                <li><a href="contactUs.html" class="list-item">Bizimlə əlaqə</a></li>
             </ul>
 
             <div class="mobile-menu" onclick="showMenu()">
@@ -60,8 +60,7 @@
 
     <section class="property-detail">
         <h3 style="padding-left: 10px; padding-bottom:15px; color: #525252;" id="property-title">
-            <span th:text="${alqiSatqi.sheherAdi + ' şəhəri'}"></span>
-            <span th:if="${alqiSatqi.rayonAdi != null}" th:text="', ' + ${alqiSatqi.rayonAdi}"></span>
+            <span th:text="${alqiSatqi.sheherAdi + ' şəhəri'}"></span><span th:if="${alqiSatqi.rayonAdi != null}" th:text="', ' + ${alqiSatqi.rayonAdi}"></span>
         </h3>
         <div class="property-images">
             <button class="prev-btn">&#10094;</button>
@@ -76,31 +75,31 @@
 
         <div class="property-content">
             <div class="property-description">
-                <h2 id="property-title" th:text="${alqiSatqi.bashliq}">Ev Başlığı</h2>
+                <h2 id="property-title" th:text="${alqiSatqi.bashliq}">Ev başlığı</h2>
                 <p id="property-description" th:text="${alqiSatqi.haqqinda}">
                 </p>
             </div>
 
             <div class="property-contact">
-                <h3>Əlaqə Məlumatları və Detallar:</h3>
+                <h3>Əlaqə məlumatları və detallar:</h3>
                 <ul>
                     <li><strong>Nömrə:</strong> <span id="property-number" th:text="${alqiSatqi.id}"></span></li>
                     <li><strong>Tip:</strong> <span id="property-type" th:text="${alqiSatqi.menzilNovAdi}">Mənzil</span></li>
-                    <li><strong>Sahə:</strong> <span id="property-area" th:text="${alqiSatqi.sahe}"></span></li>
+                    <li><strong>Sahə:</strong> <span id="property-area" th:text="${alqiSatqi.sahe} + ' M²'"></span></li>
                     <li><strong>Təmirli:</strong> <span id="property-area" th:text="${alqiSatqi.temir == 1 ? 'Hə' : 'Yox'}"></span></li>
                     <li><strong>Çıxarış:</strong><span id="property-area" th:text="${alqiSatqi.chixarish == 1 ? 'Var' : 'Yox'}"></span></li>
                     <li><strong>Sahə:</strong> <span id="property-area" th:text="${alqiSatqi.sahe}"></span></li>
-                    <li><strong>Qiymət:</strong> <span id="property-price" th:text="${alqiSatqi.qiymet} + ' M²'"></span></li>
+                    <li><strong>Qiymət:</strong> <span id="property-price" th:text="${alqiSatqi.qiymet}"></span></li>
                     <li><strong>Ünvan:</strong> <span id="property-address" th:text="${alqiSatqi.unvan}"></span></li>
                     <li><strong>Metro:</strong> <span id="property-nearby-metro" th:text="${alqiSatqi.metroAdi}"></span></li>
                     <li><strong>Ad:</strong> <span id="property-seller-name" th:text="${alqiSatqi.sahibi}"></span></li>
-                    <li><strong>Əlaqə:</strong>📞 <a href="tel:+994505131380" id="property-contact"  th:text="${alqiSatqi.telefon}"></a></li>
+                    <li><strong>Əlaqə:</strong>📞 <a href="tel:+994505131380" id="property-contact" th:text="${alqiSatqi.telefon}"></a></li>
                 </ul>
             </div>
         </div>
 
         <div class="property-map">
-            <h3>Yerləşmə Xəritəsi</h3>
+            <h3>Yerləşmə xəritəsi</h3>
             <iframe 
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7951.325843262112!2d49.83895840064746!3d40.
               38208197720522!3m2!1i1024!2i768!4f13.1!3m3!1m2!
@@ -116,7 +115,7 @@
 
         <!-- Before closing </body> -->
         <div class="mobile-call-btn">
-            <a href="tel:+994505131380">📞 Operatora Zəng Et</a>
+            <a href="tel:+994505131380">📞 Operatora zəng et</a>
         </div>
     </section>
 
@@ -129,18 +128,18 @@
             </div>
           
             <div class="footer-links">
-                <h3>Sürətli Keçidlər</h3>
+                <h3>Sürətli keçidlər</h3>
                 <ul>
-                    <li><a href="index.html">Alqı Satqı</a></li>
+                    <li><a href="index.html">Alqı-satqı</a></li>
                     <li><a href="index.html">Kirayə</a></li>
                     <li><a href="index.html">Günlük</a></li>
                     <li><a href="aboutUs.html">Haqqımızda</a></li>
-                    <li><a href="contactUs.html">Bizimlə Əlaqə</a></li>
+                    <li><a href="contactUs.html">Bizimlə əlaqə</a></li>
                 </ul>
             </div>
 
             <div class="footer-social">
-                <h3>Bizi İzləyin</h3>
+                <h3>Bizi izləyin</h3>
                 <ul>
                     <li><a href="https://shorturl.at/yipHj" target="_blank"><i class="bx bxl-instagram"></i></a></li>
                     <li><a href="https://shorturl.at/PEljm" target="_blank"><i class="bx bxl-tiktok"></i></a></li>
