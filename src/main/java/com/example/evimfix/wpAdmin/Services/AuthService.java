@@ -58,7 +58,7 @@ public class AuthService implements UserDetailsService {
         return new User(
             user.getUsername(), 
             user.getPassword(), 
-            user.isEnabled(),
+            true,           //user.isEnabled(),
             true, // accountNonExpired
             true, // credentialsNonExpired
             true, // accountNonLocked
