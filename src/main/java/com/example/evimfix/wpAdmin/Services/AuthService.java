@@ -22,8 +22,6 @@ import com.example.evimfix.wpAdmin.Models.Role;
 import com.example.evimfix.wpAdmin.Models.VerificationToken;
 import com.example.evimfix.wpAdmin.Repositories.AuthRepository;
 import com.example.evimfix.wpAdmin.Utils.Exceptions.InvalidTokenException;
-import com.example.evimfix.wpAdmin.Utils.Mailing.AccountVerificationEmailContext;
-import com.example.evimfix.wpAdmin.Utils.Mailing.EmailService;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -44,8 +42,8 @@ public class AuthService implements UserDetailsService {
     @Autowired
     private VerificationTokenService verificationTokenService;
 
-    @Autowired
-    private EmailService emailService;
+    //@Autowired
+    //private EmailService emailService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -112,22 +110,22 @@ public class AuthService implements UserDetailsService {
         return authRepository.deleteUser(username);
     }
 
-    public void sendRegistrationConfirmationEmail(Auth user) {
-        VerificationToken secureToken = verificationTokenService.createToken();
-        secureToken.setUsername(user.getUsername());
-        verificationTokenService.addSecureToken(secureToken);
-
-        AccountVerificationEmailContext context = new AccountVerificationEmailContext();
-        context.init(user);
-        context.setToken(secureToken.getToken());
-        context.buildVerificationUrl(baseUrl, secureToken.getToken());
-
-        try {
-            emailService.sendMail(context);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-    }
+    //public void sendRegistrationConfirmationEmail(Auth user) {
+    //    VerificationToken secureToken = verificationTokenService.createToken();
+    //    secureToken.setUsername(user.getUsername());
+    //    verificationTokenService.addSecureToken(secureToken);
+//
+    //    AccountVerificationEmailContext context = new AccountVerificationEmailContext();
+    //    context.init(user);
+    //    context.setToken(secureToken.getToken());
+    //    context.buildVerificationUrl(baseUrl, secureToken.getToken());
+//
+    //    try {
+    //        emailService.sendMail(context);
+    //    } catch (MessagingException e) {
+    //        e.printStackTrace();
+    //    }
+    //}
 
     public boolean verifyUser(String token) throws InvalidTokenException {
         VerificationToken secureToken = verificationTokenService.findByToken(token);
