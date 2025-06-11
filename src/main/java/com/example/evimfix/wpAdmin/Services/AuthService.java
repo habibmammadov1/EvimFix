@@ -76,7 +76,7 @@ public class AuthService implements UserDetailsService {
         auth.setPassword(passwordEncoder.encode(auth.getPassword()));
         
         String result = authRepository.addUser(auth);
-        sendRegistrationConfirmationEmail(auth);
+        //sendRegistrationConfirmationEmail(auth);
         return result.equals("1") ? "OK" : result;
     }
 
