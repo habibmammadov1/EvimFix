@@ -32,7 +32,7 @@
 
     <nav class="navbar">
         <div class="container">
-            <a href="index.html"><div class="logo">Evimfix</div></a>
+            <a th:href="@{/}"><div class="logo">Evimfix</div></a>
 
             <ul class="nav-list">
                 <li><a href="index.html" class="list-item">Alqı-satqı</a></li>
@@ -83,7 +83,7 @@
             <div class="property-contact">
                 <h3>Əlaqə məlumatları və detallar:</h3>
                 <ul>
-                    <li><strong>Nömrə:</strong> <span id="property-number" th:text="${alqiSatqi.id}"></span></li>
+                    <li><strong>Elan nömrəsi:</strong>&nbsp;<span id="property-number" th:text="${alqiSatqi.id}"></span></li>
                     <li><strong>Tip:</strong> <span id="property-type" th:text="${alqiSatqi.menzilNovAdi}">Mənzil</span></li>
                     <li><strong>Sahə:</strong> <span id="property-area" th:text="${alqiSatqi.sahe} + ' M²'"></span></li>
                     <li><strong>Təmirli:</strong> <span id="property-area" th:text="${alqiSatqi.temir == 1 ? 'Hə' : 'Yox'}"></span></li>
@@ -92,7 +92,7 @@
                     <li><strong>Qiymət:</strong> <span id="property-price" th:text="${alqiSatqi.qiymet}"></span></li>
                     <li><strong>Ünvan:</strong> <span id="property-address" th:text="${alqiSatqi.unvan}"></span></li>
                     <li><strong>Metro:</strong> <span id="property-nearby-metro" th:text="${alqiSatqi.metroAdi}"></span></li>
-                    <li><strong>Ad:</strong> <span id="property-seller-name" th:text="${alqiSatqi.sahibi}"></span></li>
+                    <!-- <li><strong>Ad:</strong> <span id="property-seller-name" th:text="${alqiSatqi.sahibi}"></span></li> -->
                     <li><strong>Əlaqə:</strong>📞 <a href="tel:+994505131380" id="property-contact" th:text="${alqiSatqi.telefon}"></a></li>
                 </ul>
             </div>

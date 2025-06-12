@@ -79,8 +79,7 @@ public class AlqiSatqiService {
             // AlqiSatqi obyektinin fotosunu al
             String[] photos = helperRepository.getAlqiSatqiPhotos(id);
             alqiSatqi.get().setPhotoPaths(photos);
-            return alqiSatqi;
-            
+            return alqiSatqi;            
         }
 
         return alqiSatqi;

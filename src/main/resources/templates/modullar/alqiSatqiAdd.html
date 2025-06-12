@@ -77,9 +77,9 @@
                 </div>     
                 
                 <div class="form-group w-20">
-                  <label for="buildingType" class="text-white" th:text="#{buildingType}"></label> <span style="color: red;">*</span>
-                  <select class="form-select" name="kirayeSatish" id="buildingType" required aria-describedby="buildingType">
-                      <option value="" th:text="#{buildingType}" selected disabled></option>
+                  <label for="announceType" class="text-white" th:text="#{announceType}"></label> <span style="color: red;">*</span>
+                  <select class="form-select" name="kirayeSatish" id="announceType" required aria-describedby="announceType">
+                      <option value="" th:text="#{announceType}" selected disabled></option>
                       <option th:each="alishKirayeNov : ${alishKirayeNovler}" 
                               th:value="${alishKirayeNov.key}" 
                               th:text="${alishKirayeNov.value}"

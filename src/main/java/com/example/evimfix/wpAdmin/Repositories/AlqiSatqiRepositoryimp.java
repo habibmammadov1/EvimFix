@@ -138,7 +138,13 @@ public class AlqiSatqiRepositoryimp implements AlqiSatqiRepository {
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                                                 .addValue("id", id);
 
-        return Optional.ofNullable(namedParameterJdbcTemplate.queryForObject(query, namedParameters, alqiSatqiRowMapper));
+        try{
+            return Optional.ofNullable(namedParameterJdbcTemplate.queryForObject(query, namedParameters, alqiSatqiRowMapper));
+        }                                                
+        catch (Exception e) {
+            // Log the exception if needed
+            return Optional.empty();
+        }
     }
 
     @Override
@@ -396,7 +402,11 @@ public class AlqiSatqiRepositoryimp implements AlqiSatqiRepository {
         }
 
         if (otaqSayi != null && otaqSayi != 0) {
-            query += " and t.otaq_sayi = :otaqSayi";
+            if (otaqSayi == 5) {
+                query += " and t.otaq_sayi >= :otaqSayi";
+            } else {
+                query += " and t.otaq_sayi = :otaqSayi";   
+            }
         }
 
         if (emlakNovu != null && emlakNovu != 0) {

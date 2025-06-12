@@ -114,10 +114,12 @@
                   th:action="@{/wp-admin/alqi-satqi/update}" 
                   method="post" enctype="multipart/form-data">
 
+              <input type="hidden" th:field="*{id}" />
+
               <div class="row ms-3 w-90">
                 <div class="form-group w-15">
                   <label for="id" class="text-white">Elan nömrəsi</label> <span style="color: red;">*</span>
-                  <input type="text" required class="form-control" disabled id="id" th:field="*{id}" 
+                  <input type="number" required class="form-control" th:value="${alqiSatqi.id}" disabled ="id"
                          aria-describedby="id">
                 </div>  
                 <div class="form-group w-25">
@@ -128,9 +130,9 @@
                 </div>     
                 
                 <div class="form-group w-20">
-                  <label for="buildingType" class="text-white" th:text="#{buildingType}"></label> <span style="color: red;">*</span>
-                  <select class="form-select" name="kirayeSatish" id="buildingType" required aria-describedby="buildingType">
-                      <option value="" th:text="#{buildingType}" disabled></option>
+                  <label for="announceType" class="text-white" th:text="#{announceType}"></label> <span style="color: red;">*</span>
+                  <select class="form-select" name="kirayeSatish" id="announceType" required aria-describedby="announceType">
+                      <option value="" th:text="#{announceType}" disabled></option>
                       <option th:each="alishKirayeNov : ${alishKirayeNovler}" 
                               th:value="${alishKirayeNov.key}" 
                               th:text="${alishKirayeNov.value}"
