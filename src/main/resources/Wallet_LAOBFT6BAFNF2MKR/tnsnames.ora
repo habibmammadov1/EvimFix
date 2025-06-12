@@ -1,8 +1,0 @@
-laobft6bafnf2mkr_high = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.me-abudhabi-1.oraclecloud.com))(connect_data=(service_name=gcd169e15831e7e_laobft6bafnf2mkr_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
-
-laobft6bafnf2mkr_low = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.me-abudhabi-1.oraclecloud.com))(connect_data=(service_name=gcd169e15831e7e_laobft6bafnf2mkr_low.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
-
-laobft6bafnf2mkr_medium = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.me-abudhabi-1.oraclecloud.com))(connect_data=(service_name=gcd169e15831e7e_laobft6bafnf2mkr_medium.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
-
-
-
