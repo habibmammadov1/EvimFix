@@ -173,29 +173,29 @@ function debounce(func, timeout = 300) {
     };
 }
 
-function filterProperties(type) {
-    const form = document.querySelector('form'); // Your search form
-    const alishKirayeSelect = form.querySelector('select[name="alishKiraye"]');
-    const typeSelect = form.querySelector('select[name="type"]'); // Add this if not exists
+// function filterProperties(type) {
+//     const form = document.querySelector('form'); // Your search form
+//     const alishKirayeSelect = form.querySelector('select[name="alishKiraye"]');
+//     const typeSelect = form.querySelector('select[name="type"]'); // Add this if not exists
 
-    switch (type) {
-        case 'alish':
-            alishKirayeSelect.value = 'alish'; // Set to "Alış"
-            if (typeSelect) typeSelect.value = ''; // Clear rental type
-            break;
-        case 'kiraye':
-            alishKirayeSelect.value = 'kiraye'; // Set to "Kirayə"
-            if (typeSelect) typeSelect.value = ''; // Clear rental type
-            break;
-        case 'kiraye-gunluk':
-            alishKirayeSelect.value = 'kiraye'; 
-            if (typeSelect) typeSelect.value = 'daily'; // Set to "Günlük"
-            break;
-        case 'kiraye-ayliq':
-            alishKirayeSelect.value = 'kiraye';
-            if (typeSelect) typeSelect.value = 'monthly'; // Set to "Aylıq"
-            break;
-    }
+//     switch (type) {
+//         case 'alish':
+//             alishKirayeSelect.value = 'alish'; // Set to "Alış"
+//             if (typeSelect) typeSelect.value = ''; // Clear rental type
+//             break;
+//         case 'kiraye':
+//             alishKirayeSelect.value = 'kiraye'; // Set to "Kirayə"
+//             if (typeSelect) typeSelect.value = ''; // Clear rental type
+//             break;
+//         case 'kiraye-gunluk':
+//             alishKirayeSelect.value = 'kiraye'; 
+//             if (typeSelect) typeSelect.value = 'daily'; // Set to "Günlük"
+//             break;
+//         case 'kiraye-ayliq':
+//             alishKirayeSelect.value = 'kiraye';
+//             if (typeSelect) typeSelect.value = 'monthly'; // Set to "Aylıq"
+//             break;
+//     }
 
-    form.submit(); // Submit the form to reload results
-}
+//     form.submit(); // Submit the form to reload results
+// }
