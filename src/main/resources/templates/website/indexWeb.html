@@ -113,28 +113,13 @@
                     <option value="2" th:selected="${otaqSayi == 2 ? 'selected' : null}">2 Otaqlı</option>
                     <option value="3" th:selected="${otaqSayi == 3 ? 'selected' : null}">3 Otaqlı</option>
                     <option value="4" th:selected="${otaqSayi == 4 ? 'selected' : null}">4 Otaqlı</option>
-                    <option value="5" th:selected="${otaqSayi == 5 ? 'selected' : null}">5 Otaqlı</option>
-                    <option value="6" th:selected="${otaqSayi == 6 ? 'selected' : null}">6 Otaqlı</option>
-                    <option value="7" th:selected="${otaqSayi == 7 ? 'selected' : null}">7 Otaqlı</option>
-                    <option value="8" th:selected="${otaqSayi == 8 ? 'selected' : null}">8 Otaqlı</option>
-                    <option value="9" th:selected="${otaqSayi == 9 ? 'selected' : null}">9 Otaqlı</option>
-                    <option value="10" th:selected="${otaqSayi == 10 ? 'selected' : null}">10 Otaqlı</option>
-                    <option value="11" th:selected="${otaqSayi == 11 ? 'selected' : null}">11 Otaqlı</option>
-                    <option value="12" th:selected="${otaqSayi == 12 ? 'selected' : null}">12 Otaqlı</option>
-                    <option value="13" th:selected="${otaqSayi == 13 ? 'selected' : null}">13 Otaqlı</option>
-                    <option value="14" th:selected="${otaqSayi == 14 ? 'selected' : null}">14 Otaqlı</option>
-                    <option value="15" th:selected="${otaqSayi == 15 ? 'selected' : null}">15 Otaqlı</option>
-                    <option value="16" th:selected="${otaqSayi == 16 ? 'selected' : null}">16 Otaqlı</option>
-                    <option value="17" th:selected="${otaqSayi == 17 ? 'selected' : null}">17 Otaqlı</option>
-                    <option value="18" th:selected="${otaqSayi == 18 ? 'selected' : null}">18 Otaqlı</option>
-                    <option value="19" th:selected="${otaqSayi == 19 ? 'selected' : null}">19 Otaqlı</option>
-                    <option value="20" th:selected="${otaqSayi == 20 ? 'selected' : null}">20 Otaqlı</option>
+                    <option value="5" th:selected="${otaqSayi == 5 ? 'selected' : null}">5+ Otaqlı</option>
                 </select>
                 <img th:src="@{/website/img/NumOfRooms.png}" alt="Rooms Icon" />
             </div>
             <div class="search-input">
                 <select name="emlakNovu">
-                    <option value="">Emlak növü seçin</option>
+                    <option value="">Əmlak növü seçin</option>
                     <option th:each="emlak : ${emlakNovler}" th:value="${emlak.key}" th:text="${emlak.value}"
                             th:selected="${emlakNovuA == emlak.key ? 'selected' : null}"></option>
                 </select>
