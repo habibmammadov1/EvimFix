@@ -66,7 +66,7 @@
             <button class="prev-btn">&#10094;</button>
 
             <div th:each="photo : ${alqiSatqi.photoPaths}">
-                <img th:src="@{'/buildingPhotos/' + ${photo}}" class="property-slide" style="display: none; background-size: cover;" loading="lazy">
+                <img th:src="@{/photos/{filename}(filename=${photo})}" class="property-slide" style="display: none; background-size: cover;" loading="lazy">
             </div>
             <div class="slide-indicators"></div>
             

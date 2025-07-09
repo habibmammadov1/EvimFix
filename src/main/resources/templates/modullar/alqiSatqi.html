@@ -291,7 +291,7 @@
                       </button> -->
         
                       <!-- Display the image -->
-                      <img class="row ms-3" th:src="@{/buildingPhotos/} + ${file}" alt="Uploaded photo" 
+                      <img class="row ms-3" th:src="@{/photos/{filename}(filename=${file})}" alt="Uploaded photo" 
                            style="width: 250px; height: 200px; background-size: contain; object-fit: contain; border: 1px solid #ddd; border-radius: 4px;" />
                   </div>
               </div>
