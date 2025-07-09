@@ -141,20 +141,16 @@ public class AlqiSatqiController {
     @GetMapping("/photos/{filename}")
     @ResponseBody
     public ResponseEntity<Resource> getPhoto(@PathVariable String filename) throws IOException {
-        Path filePath = Paths.get("/opt/evimfix-photos").resolve(filename);
+        Path filePath = Paths.get("/opt/evimfix-photos").resolve(filename).normalize();
         Resource resource = new UrlResource(filePath.toUri());
 
         if (resource.exists() && resource.isReadable()) {
             String contentType = Files.probeContentType(filePath);
-            if (contentType == null) {
-                contentType = "application/octet-stream";
-            }
+            if (contentType == null) contentType = "application/octet-stream";
             return ResponseEntity.ok()
-                .header("Content-Type", contentType)
-                .body(resource);
-        } 
-        
-        else {
+                    .header("Content-Type", contentType)
+                    .body(resource);
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
