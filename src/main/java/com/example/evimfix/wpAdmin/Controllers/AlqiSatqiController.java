@@ -141,6 +141,7 @@ public class AlqiSatqiController {
     @GetMapping("/photos/{filename}")
     @ResponseBody
     public ResponseEntity<Resource> getPhoto(@PathVariable String filename) throws IOException {
+        System.out.println("Photo requested: " + filename);
         Path filePath = Paths.get("/opt/evimfix-photos").resolve(filename).normalize();
         Resource resource = new UrlResource(filePath.toUri());
 

@@ -1,22 +1,28 @@
 package com.example.evimfix.website.Controllers;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.evimfix.wpAdmin.Models.AlqiSatqi;
 import com.example.evimfix.wpAdmin.Services.AlqiSatqiService;
-import com.example.evimfix.wpAdmin.Services.AuthService;
 
 @Controller
 public class HomeController {
     @Autowired
     private AlqiSatqiService alqiSatqiService;
-
-    @Autowired
-    private AuthService authService;
 
     @GetMapping("/")
     public ModelAndView index(
@@ -69,5 +75,23 @@ public class HomeController {
         }        
 
         return model;
+    }
+
+    @GetMapping("/photos/{filename}")
+    @ResponseBody
+    public ResponseEntity<Resource> getPhoto(@PathVariable String filename) throws IOException {
+        System.out.println("Photo requested: " + filename);
+        Path filePath = Paths.get("/opt/evimfix-photos").resolve(filename).normalize();
+        Resource resource = new UrlResource(filePath.toUri());
+
+        if (resource.exists() && resource.isReadable()) {
+            String contentType = Files.probeContentType(filePath);
+            if (contentType == null) contentType = "application/octet-stream";
+            return ResponseEntity.ok()
+                    .header("Content-Type", contentType)
+                    .body(resource);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
