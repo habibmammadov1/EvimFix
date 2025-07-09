@@ -154,7 +154,7 @@
         </div>
         <div class="container">
             <div class="product-card" th:each="alqiSatqi : ${alqiSatqiList}">
-                    <img th:src="@{/photos/{file}(file=${alqiSatqi.photoPath})}" class="product-img" />
+                    <img th:src="@{/photos/{filename}(filename=${alqiSatqi.photoPath})}" class="product-img" />
                 <div class="card-info">
                     <div class="card-info-content">
                         <img th:src="@{/website/img/location.svg}" alt="">

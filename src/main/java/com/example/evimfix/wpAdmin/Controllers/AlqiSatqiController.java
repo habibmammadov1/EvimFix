@@ -1,6 +1,7 @@
 package com.example.evimfix.wpAdmin.Controllers;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
@@ -144,8 +145,16 @@ public class AlqiSatqiController {
         Resource resource = new UrlResource(filePath.toUri());
 
         if (resource.exists() && resource.isReadable()) {
-            return ResponseEntity.ok().body(resource);
-        } else {
+            String contentType = Files.probeContentType(filePath);
+            if (contentType == null) {
+                contentType = "application/octet-stream";
+            }
+            return ResponseEntity.ok()
+                .header("Content-Type", contentType)
+                .body(resource);
+        } 
+        
+        else {
             return ResponseEntity.notFound().build();
         }
     }
