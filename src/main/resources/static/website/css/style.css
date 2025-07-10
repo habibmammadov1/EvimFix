@@ -120,7 +120,6 @@ nav .container {
     font-size: 1.1rem;
     font-weight: 500;
     transition: color 0.3s ease, opacity 0.3s ease;
-    margin-right: 1rem;
 }
 
 .list-item:hover {

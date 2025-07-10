@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="az">
+<head th:replace="~{/website/template/head :: head}"></head>
+<head>
+  <link th:href="@{/website/css/about.css}" rel="stylesheet" />
+</head>
+<body>
+    <!-- navbar -->
+    <div th:replace="~{/website/template/navbar :: navbar}"></div>
+
+    <section class="about" id="about">
+      <div class="container">
+        <figure class="about-banner">
+          <img th:src="@{/website/img/Property5.jpg}" alt="House interior">
+          <img th:src="@{/website/img/Property1.jpg}" alt="House interior" class="abs-img">
+        </figure>
+        <div class="about-content">
+          <p class="section-subtitle">Haqqımızda</p>
+          <h2 class="h2 section-title">Evimfix – Evlərinizi Tapmağın Ən Asan Yolu</h2>
+          <p class="about-text">
+            Evimfix, Azərbaycanda ev alqı-satqısı və kirayəsi üçün yaradılmış qabaqcıl onlayn platformadır.
+            Biz minlərlə insanın özünə uyğun evi tapmasına kömək etmək üçün buradayıq.
+            İstər kirayə, istər satış, istərsə də kommersiya əmlakı axtarırsınızsa, Evimfix sizə dəqiq, tez və rahat seçim imkanı yaradır.
+            Hazırda yüzlərlə agentlik və minlərlə fərdi istifadəçi tərəfindən istifadə olunan Evimfix,
+            əmlak bazarına sürətli çıxış və etibarlı informasiya təqdim edir.
+          </p>
+          <ul class="about-list">
+            <li class="about-item">
+              <div class="about-item-icon">
+                <ion-icon name="apps-outline"></ion-icon>
+              </div>
+              <p class="about-item-text">Sadə və funksional interfeys</p>
+            </li>
+            <li class="about-item">
+              <div class="about-item-icon">
+                <ion-icon name="map-outline"></ion-icon>
+              </div>
+              <p class="about-item-text">İstənilən bölgədən əmlak axtarışı</p>
+            </li>
+            <li class="about-item">
+              <div class="about-item-icon">
+                <ion-icon name="people-outline"></ion-icon>
+              </div>
+              <p class="about-item-text">Agent və fərdi satıcılarla birbaşa əlaqə</p>
+            </li>
+            <li class="about-item">
+              <div class="about-item-icon">
+                <ion-icon name="refresh-outline"></ion-icon>
+              </div>
+              <p class="about-item-text">Müntəzəm yenilənən elan bazası</p>
+            </li>
+          </ul>
+          <p class="callout">
+            Nə makler, nə aldatma - sadəcə EvimFiX.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer th:replace="~{/website/template/footer :: footer}"></footer>
+
+    <script>
+      function showMenu() {
+      document.querySelector('.nav-list').classList.toggle('active');
+      }
+    </script>
+</body>
+</html>

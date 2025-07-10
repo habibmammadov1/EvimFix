@@ -94,4 +94,11 @@ public class HomeController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    // Other pages
+    @GetMapping("/about")
+    public ModelAndView about() {
+        ModelAndView model = new ModelAndView("/website/about");
+        return model;
+    }
 }

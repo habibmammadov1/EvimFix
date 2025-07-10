@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6" lang="en">
+  <body>
+    <nav th:fragment="navbar" class="navbar">
+        <div class="container">
+            <a th:href="@{/}"><div class="logo">Evimfix</div></a>
+            <ul class="nav-list">
+                <li>
+                    <a th:href="@{/?alishKiraye=1}" class="list-item" style="width: 85px;">Alqı Satqı</a>
+                </li>
+                <li class="dropdown">
+                    <a th:href="@{/?alishKiraye=2}" class="list-item dropdown-toggle">Kirayə</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="dropdown-item">Kirayə Günlük</a></li>
+                        <li><a th:href="@{/?alishKiraye=2}" class="dropdown-item">Kirayə Aylıq</a></li>
+                    </ul>
+                </li>
+
+                <li><a th:href="@{/about}" class="list-item">Haqqımızda</a></li>
+                <li><a href="favorites.html" class="list-item">Sevimlilər</a></li>
+                <li><a href="contactUs.html" class="list-item" style="width: 130px;">Bizimlə Əlaqə</a></li>
+            </ul>
+
+            <div class="mobile-menu" onclick="showMenu()">
+                <div class="line line1" style="background-color: #505050;"></div>
+                <div class="line line2" style="background-color: #505050;"></div>
+                <div class="line line3" style="background-color: #505050;"></div>
+            </div>
+        </div>
+    </nav>
+  </body>
+</html>
