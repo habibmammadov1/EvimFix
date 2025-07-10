@@ -1,403 +1,155 @@
-/* --- Responsive Styles (Media Queries) --- */
+@media (max-width: 600px) {
+    .navbar {
+        box-shadow: 2px 2px 2px rgba(80, 80, 80, 0.15);
+        min-height: 80px;
+        z-index: 9999;
+    }
 
-        /* General Tablet View (768px - 1024px) */
-        @media (min-width: 768px) and (max-width: 1024px) {
-            nav .container {
-                height: 60px; 
-                padding: 0 15px;
-            }
+    .mobile-menu {
+        display: flex;
+        width: 30px;
+        height: 30px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        z-index: 1001;
+        margin-left: auto;
+    }
 
-            .nav-list {
-                gap: 1rem; 
-            }
+    .line {
+        width: 110%;
+        height: 4px;
+        margin-right: 15px;
+        background-color: #505050;
+        border-radius: 5px;
+        position: relative;
+        transition: transform 300ms ease-in-out;
+    }
 
-            .list-item {
-                font-size: 0.95rem; 
-                padding: 0.3rem 0;
-            }
+    .line1 {
+        transform: translateY(-6px);
+    }
 
-            .logo {
-                font-size: 1.3rem;
-            }
+    .line3 {
+        transform: translateY(6px);
+    }
 
-            .dropdown-menu {
-                min-width: 140px;
-            }
+    .mobile-menu.active .line1 {
+        transform: translateY(1px) rotate(45deg);
+    }
 
-            .dropdown-item {
-                padding: 0.4rem 1rem;
-                font-size: 0.85rem;
-            }
+    .mobile-menu.active .line2 {
+        opacity: 0;
+        transform: scaleX(0);
+    }
 
-            /* Search Container Adjustments for Tablet */
-            form {
-                min-height: 400px; /* Tablet ölçülərində formun hündürlüyü */
-            }
+    .mobile-menu.active .line3 {
+        transform: translateY(-6.5px) rotate(-45deg);
+    }
 
-            form h1 {
-                font-size: 2.5rem;
-            }
+    .nav-list {
+        position: absolute;
+        flex-direction: column;
+        align-items: start;
+        top: -50vh;
+        gap: 2rem;
+        left: 0%;
+        padding-left: 0;
+        transition: opacity 200ms ease-in-out;
+        background-color: #505050;
+        width: 100%;
+        opacity: 0;
+        justify-content: start;
+    }
 
-            .search-container {
-                width: 90%; 
-                padding: 1rem 0.6rem; /* Paddingi azaldıldı */
-                gap: 0.5rem; /* Boşluqları azaldıldı */
-                max-width: 700px; /* Tabletdə maksimum en */
-            }
+    .nav-list :last-child {
+        padding-bottom: 1rem;
+    }
 
-            .search-input-wrapper {
-                flex-basis: 48%; 
-                max-width: none; 
-                min-width: unset; /* Reset minimum width for flexibility */
-            }
-            
-            .search-btn {
-                flex-basis: 98%; 
-                max-width: none;
-                min-width: unset; /* Reset minimum width for flexibility */
-            }
+    .nav-list.active {
+        opacity: 1;
+        top: 60px;
+        padding-left: 1rem;
+        padding-top: 1rem;
+        z-index: 9999;
+    }
 
-            /* Advanced Search Panel on Tablet */
-            .advanced-search-panel {
-                max-height: calc(100vh - 650px); /* Ekran hündürlüyünün bir hissəsini tutsun (navbar və üst boşluq nəzərə alınaraq) */
-                overflow-y: auto; /* Məzmun sığmayanda paneli sürüşdürsün */
-                -webkit-overflow-scrolling: touch; /* iOS-də daha hamar sürüşdürmə */
-            }
+    .nav-list li {
+        width: 100%;
+    }
 
-            .advanced-search-panel .panel-column {
-                grid-column: span 1; /* Hər sütun 1 grid sütunu tutsun */
-            }
+    .nav-list .list-item {
+        color: white;
+        font-size: 1.1rem;
+        padding: 0.5rem 0;
+        display: block;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100%;
+    }
 
-            /* Başlıqlar və düymələr hələ də tam eni əhatə etməlidir */
-            .advanced-search-panel .panel-section-title {
-                grid-column: span 2; /* Tabletdə 2 sütun üzrə yayılsın */
-            }
-            /* Kiçik başlıqlar öz sütunlarında qalsın */
-            .advanced-search-panel .panel-section-title-small {
-                grid-column: span 1; 
-            }
-            
-            .advanced-search-panel .panel-checkbox-group {
-                grid-template-columns: 1fr; /* Tabletdə checkboxlar bir sütunda olsun */
-            }
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        background-color: rgba(0, 0, 0, 0.1);
+        margin-top: 0.5rem;
+        display: none;
+    }
 
-            .advanced-search-panel .panel-buttons {
-                grid-column: span 2; /* Düymələr də 2 sütunu əhatə etsin */
-                margin-top: 15px; /* Yenidən tənzimləyə bilərsiniz */
-                align-self: flex-start; /* Yenidən tənzimləyə bilərsiniz */
-            }
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu {
+        display: block;
+        opacity: 1;
+        transform: none;
+    }
 
-            .advanced-search-panel .panel-column-last .panel-buttons {
-                margin-top: initial; /* Və ya konkret bir dəyər */
-                align-self: initial;
-            }
+    .dropdown-item {
+        padding: 0.7rem 1rem;
+        color: rgba(255, 255, 255, 0.9);
+    }
 
-            /* Product Card Adjustments for Tablet */
-            .product-info .product-title {
-                width: 80%; 
-                font-size: 2.5rem;
-            }
+    form {
+        width: 100%;
+        display: block;
+        margin-top: -100px;
+        border-radius: 0;
+    }
 
-            #product .container {
-                width: 90%;
-                gap: 0.8rem;
-            }
-            .product-card {
-                flex-basis: 30%; 
-            }
-        }
+    form .container {
+        width: 100%;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        box-shadow: 0px 5px 10px rgba(80, 80, 80, 0.15);
+        padding-block: 2rem;
+    }
 
-        /* Special case for landscape tablets */
-        @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .nav-list {
-                gap: 0.8rem;
-            }
-            
-            .list-item {
-                font-size: 0.9rem;
-            }
+    .input {
+        flex-basis: 70%;
+    }
 
-            /* Header hündürlüyünü tablet landscape üçün tənzimləmək */
-            header {
-                min-height: 100vh; /* Geniş ekranlarda da tam ekran olsun */
-            }
-        }
+    .product-info {
+        width: 90%;
+        flex-direction: column;
+        justify-content: center;
+    }
 
-        /* Ensure mobile menu doesn't appear on tablets/desktop */
-        @media (min-width: 768px) {
-            .mobile-menu {
-                display: none !important;
-            }
-            
-            .nav-list {
-                display: flex !important;
-                opacity: 1 !important;
-                visibility: visible !important;
-                position: static !important;
-                width: auto !important;
-                background-color: transparent !important;
-                flex-direction: row !important;
-            }
-        }
+    .product-info .product-title {
+        font-size: 1.5rem;
+        width: 100%;
+        flex-basis: 100%;
+        text-align: center;
+    }
 
-        /* Mobile View (up to 767px) */
-        @media (max-width: 767px) {
-            /* Navbar */
-            nav .container {
-                height: 60px; 
-                padding: 0 15px;
-            }
+    .product-btn {
+        width: 350px;
+    }
 
-            .nav-list {
-                position: fixed;
-                top: 60px; 
-                right: -100%; 
-                width: 70%; 
-                height: calc(100vh - 60px); 
-                background-color: #505050; 
-                flex-direction: column;
-                justify-content: flex-start;
-                padding-top: 2rem;
-                transition: right 0.3s ease-in-out;
-                box-shadow: -2px 0 10px rgba(0,0,0,0.2);
-                gap: 18px;
-            }
+    #product .container {
+        gap: 2rem;
+    }
 
-            .nav-list.active {
-                right: 0; 
-            }
-
-            .list-item {
-                color: #fff; 
-                width: 100%;
-                padding: 8px 20px;
-                margin-right: 0; 
-                border-bottom: 1px solid rgba(255, 255, 255, 0.359);
-                text-align: left;
-                padding-bottom: 1px;
-            }
-
-            .list-item:hover {
-                opacity: 1; 
-            }
-
-            .mobile-menu {
-                display: block; 
-                z-index: 1001; 
-            }
-
-            .mobile-menu .line {
-                width: 30px;
-                height: 3px;
-                background-color: #4d4f56; /* Mobile menu xətləri ağ rəngdə olsun */
-                margin: 7px 0;
-                transition: all 0.3s ease;
-            }
-
-            /* Hamburger animation */
-            .mobile-menu.active .line1 {
-                transform: rotate(-45deg) translate(-5px, 8.5px);
-            }
-            .mobile-menu.active .line2 {
-                opacity: 0;
-            }
-            .mobile-menu.active .line3 {
-                transform: rotate(45deg) translate(-5px, -10px);
-            }
-
-            /* Form / Hero section */
-            header {
-                min-height: 100vh; /* Mobil cihazlarda da tam ekran olsun */
-                padding-top: 60px; /* Navbar hündürlüyünə uyğun boşluq */
-            }
-
-            form {
-                padding-top: 20px; /* Mobil cihazlarda formun yuxarıdan boşluğunu tənzimləmək */
-                min-height: 300px; /* Mobil cihazlarda formun hündürlüyü */
-            }
-
-            form h1 {
-                font-size: 1.7rem; 
-                margin-bottom: 1.5rem;
-            }
-
-            .search-container {
-                width: 95%; 
-                flex-direction: column; 
-                padding: 1rem;
-                max-width: unset; /* Mobil üçün maximum eni ləğv etmək */
-            }
-
-            .search-input-wrapper {
-                flex: 1 1 100%; /* Hər input qutusunu tam eni tutdurmaq */
-                min-width: unset; /* Minimum eni sıfırla */
-                max-width: unset; /* Maksimum eni sıfırla */
-                width: 100%; /* Hər zaman 100% en */
-            }
-
-            .search-input {
-                padding: 0.5rem 0.75rem; /* Re-apply padding for mobile */
-            }
-
-            /* Rayon seçimi indi custom olduğu üçün bu stillər yalnız inputlara aiddir */
-            .search-input input {
-                font-size: 0.9rem; /* Font ölçüsünü kiçilt */
-                padding: 0.4rem 0.6rem; /* Paddingi kiçilt */
-            }
-            
-            /* Ətraflı axtarış panelindəki selectlər üçün */
-            .advanced-search-panel .panel-input-group select {
-                font-size: 0.9rem; /* Font ölçüsünü kiçilt */
-                padding: 0.4rem 0.6rem; /* Paddingi kiçilt */
-            }
-            /* Ətraflı axtarış panelindəki rayon/metro seçimi optionları üçün */
-            .advanced-search-panel .panel-input-group select option {
-                font-size: 0.9rem; /* Font ölçüsünü kiçilt */
-                padding: 5px 10px; /* Daxili boşluğu tənzimləyin */
-            }
-
-
-            .search-btn {
-                width: 100%;
-                max-width: 100%; 
-            }
-            .search-btn input[type="submit"] {
-                width: 100%;
-            }
-
-            /* Advanced Search Panel on Mobile */
-            .advanced-search-panel {
-                grid-template-columns: 1fr; /* Mobil üçün tək sütun */
-                max-height: calc(100vh - 650px); /* Ekran hündürlüyünün bir hissəsini tutsun (navbar və üst boşluq nəzərə alınaraq) */
-                overflow-y: auto; /* Məzmun sığmayanda paneli sürüşdürsün */
-                -webkit-overflow-scrolling: touch; /* iOS-də daha hamar sürüşdürmə */
-                padding: 1rem; /* Mobil üçün paddingi tənzimləyin */
-                width: 95%; /* Mobil üçün eni tənzimləyin */
-                max-width: unset; /* Maksimum eni sıfırla */
-            }
-
-            .advanced-search-panel .panel-column {
-                grid-column: span 1; /* Hər sütun 1 grid sütunu tutsun */
-            }
-
-            .advanced-search-panel .panel-section-title {
-                grid-column: span 1; /* Mobildə 1 sütun üzrə yayılsın */
-            }
-
-            .advanced-search-panel .panel-checkbox-group {
-                display: grid; 
-                grid-template-columns: repeat(2, 1fr); /* 2 sütun */
-                gap: 0.5rem; /* Sütunlararası boşluq */
-                flex-direction: initial; /* flex-direction: column; dəyərini ləğv edir */
-            }
-
-            .advanced-search-panel .panel-buttons {
-                flex-direction: row; /* Yan-yana qalsınlar */
-                justify-content: space-around; /* Düymələr arasında bərabər boşluq */
-                align-items: center; /* Dikey hizalama */
-                flex-wrap: wrap; /* Hissələr sığmırsa alt-alta düşsün */
-            }
-
-            .advanced-search-panel .reset-btn,
-            .advanced-search-panel .search-panel-btn {
-                width: 48%; /* Hər düymənin enini təyin et */
-                margin-bottom: 5px; /* Alt-alta düşərsə aralarında boşluq qalsın */
-                flex-grow: 1; /* Böyüməyə icazə verin */
-                flex-shrink: 1; /* Kiçilməyə icazə verin */
-                min-width: 120px; /* Hər düymə üçün minimum en (sıxılmanın qarşısını almaq üçün) */
-            }
-            
-            /* Product Section */
-            .product-info {
-                display: flex;
-                flex-direction: row; 
-                justify-content: center;
-                align-items: center;
-                width: 100%;
-            }
-
-            .product-info .product-title {
-                font-size: 2.2rem; 
-                width: 90%; 
-                text-align: center;
-            }
-
-            #product .container {
-                width: 95%; 
-                gap: 1rem;
-            }
-
-            .product-card {
-                flex-basis: 100%; 
-                width: 100%;
-            }
-            
-            /* Footer Mobile Optimization */
-            .footer {
-                padding: 30px 15px;
-            }
-            
-            .footer-container {
-                flex-direction: column;
-                align-items: center;
-                gap: 2.5rem;
-                text-align: center;
-            }
-            
-            .footer-info, 
-            .footer-links, 
-            .footer-social {
-                width: 100%;
-                max-width: 300px;
-            }
-            
-            .footer-links ul, 
-            .footer-social ul {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .footer-links ul li, 
-            .footer-social ul li {
-                margin-bottom: 8px;
-            }
-            
-            .footer-social ul {
-                flex-direction: row;
-                justify-content: center;
-                gap: 15px;
-            }
-            
-            .footer-info h3,
-            .footer-links h3,
-            .footer-social h3 {
-                font-size: 1.3rem;
-                margin-bottom: 15px;
-            }
-
-            .footer-bottom {
-                font-size: 0.8rem;
-                padding-top: 0.5rem;
-            }
-        }
-
-        /* Even Smaller Devices (up to 480px) */
-        @media (max-width: 480px) {
-            .footer {
-                padding: 25px 10px;
-            }
-            
-            .footer-info p {
-                font-size: 0.9rem;
-            }
-            
-            .footer-links a,
-            .footer-social a {
-                font-size: 0.95rem;
-            }
-            
-            .footer-social a {
-                font-size: 1.5rem;
-            }
-        }
+    .product-card {
+        flex-basis: 100%;
+    }
+}
