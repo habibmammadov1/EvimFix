@@ -1,684 +1,908 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700&display=swap'); 
 
-html {
-    scroll-behavior: smooth;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html,
-body {
-    height: 100%;
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-}
-
-body {
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-}
-
-::-webkit-scrollbar {
-    width: 10px;
-    height: 8px;
-}
-
-::-webkit-scrollbar-track { background: hsl(0, 0%, 93%); }
-
-::-webkit-scrollbar-thumb {
-    background: #505050;
-}
-
-img,
-picture,
-video,
-canvas,
-svg {
-    display: block;
-    max-width: 100%;
-}
-
-input,
-button,
-textarea,
-select {
-    font: inherit;
-}
-
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    overflow-wrap: break-word;
-}
-
-li {
-    list-style: none;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    padding: 0 20px;
-}
-
-nav .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.logo {
-    font-weight: 600;
-    font-size: 1.5rem;
-    color: #505050;
-}
-
-.nav-list {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    background-color: transparent;
-}
-
-.nav-list.active {
-    background-color: #505050;
-}
-
-.nav-list.active .list-item {
-    color: #fff;
-}
-
-.mobile-menu {
-    display: none;
-    cursor: pointer;
-}
-
-.list-item {
-    color: #505050;
-    font-size: 1.1rem;
-    font-weight: 500;
-    transition: color 0.3s ease, opacity 0.3s ease;
-}
-
-.list-item:hover {
-    opacity: 0.8;
-}
-
-.nav-list.active .contact {
-    color: #fff;
-}
-
-/* Dropdown Styles */
-.dropdown {
-    position: relative;
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: white;
-    width: 180px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    border-radius: 5px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
-    z-index: 1000;
-}
-
-.dropdown:hover .dropdown-menu,
-.dropdown:focus-within .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.dropdown-item {
-    display: block;
-    padding: 10px 15px;
-    color: #505050;
-    transition: all 0.2s;
-}
-
-.dropdown-item:hover {
-    background: #f5f5f5;
-    color: #000;
-}
-
-/* Tablet View (768px - 1024px) */
-@media (min-width: 768px) and (max-width: 1024px) {
-    nav .container {
-        height: 60px;
-        padding: 0 15px;
-    }
-
-    .nav-list {
-        gap: 1rem;
-    }
-
-    .list-item {
-        font-size: 0.95rem;
-        padding: 0.3rem 0;
-    }
-
-    .logo {
-        font-size: 1.3rem;
-    }
-
-    .dropdown-menu {
-        min-width: 140px;
-    }
-
-    .dropdown-item {
-        padding: 0.4rem 1rem;
-        font-size: 0.85rem;
-    }
-}
-
-/* Special case for landscape tablets */
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-    .nav-list {
-        gap: 0.8rem;
-    }
-    
-    .list-item {
-        font-size: 0.9rem;
-    }
-}
-
-/* Make sure mobile menu doesn't appear on tablets */
-@media (min-width: 768px) {
-    .mobile-menu {
-        display: none !important;
-    }
-    
-    .nav-list {
-        display: flex !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        position: static !important;
-        width: auto !important;
-        background-color: transparent !important;
-        flex-direction: row !important;
-    }
-}
-
-form {
-    margin-top: 70px;
-    padding: 20px 0;
-    position: relative;
-    z-index: 999;
-}
-
-.search-container {
-    width: 80%;
-    max-width: 2000px;
-    margin: 0 auto;
-    margin-bottom: -15px;
-    background-color: #fff;
-    box-shadow: 0px 5px 15px rgba(80, 80, 80, 0.15);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem;
-    padding: 2rem 1rem;
-    border-radius: 0.6rem;
-    box-sizing: border-box;
-}
-
-.search-input {
-    flex: 1 1 220px;
-    max-width: 260px;
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: 1px solid rgba(80, 80, 80, 0.3);
-    border-radius: 5px;
-    padding: 0.5rem 0.75rem;
-    gap: 0.5rem;
-    box-sizing: border-box;
-}
-
-.search-input input,
-.search-input select {
-    border: none;
-    outline: none;
-    background-color: transparent;
-    font-size: 1rem;
-    width: 100%;
-}
-
-.search-input img {
-    width: 20px;
-    height: 20px;
-}
-
-.search-btn input[type="submit"] {
-    background-color: #505050;
-    color: white;
-    padding: 1rem;
-    border-radius: 5px;
-    font-size: 1rem;
-    text-transform: uppercase;
-    cursor: pointer;
-    width: 100%;
-    border: none;
-    transition: background-color 0.3s ease;
-}
-
-.search-btn input[type="submit"]:hover {
-    background-color: #444444;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    form {
-        padding-top: 200px;
-    }
-
-    .search-container {
-        width: 95%;
-        flex-direction: column;
-        padding: 1rem;
-    }
-
-    .search-input {
-        flex: 1 1 100%;
-        margin-bottom: 1rem;
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .search-btn input[type="submit"] {
-        width: 100%;
-    }
-}
-
-/* Ümumi tənzimləmələr */
-#product {
-    width: 100%;
-    padding-block: 4rem;
-    padding-bottom: 0px;
-}
-
-.product-info {
-    width: 88%;
-    margin: 0 auto;
-    display: flex;
-    justify-content:center;
-    margin-bottom: 2rem;
-    margin-top: -20px;
-}
-
-.product-info .product-title {
-    font-size: clamp(1.5rem, 2vw, 2.8rem);
-    font-weight: 500;
-    text-transform: capitalize;
-    color: #505050;
-    width: 69%;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-#product .container {
-    width: 87%;
-    margin-inline: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.product-card {
-    position: relative;
-    flex-basis: 22%;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    box-shadow: 0px 5px 10px rgba(80, 80, 80, 0.20);
-    padding-bottom: 1rem;
-    overflow: hidden;
-}
-
-.favorite-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    transition: opacity 300ms ease;
-}
-
-.favorite-btn:hover {
-    opacity: 0.8;
-}
-
-.favorite-btn .heart-img {
-    width: 25px;
-    height: 25px;
-}
-
-.favorite-btn.favorited .heart-img {
-    content: url('./images/heart1.png');
-}
-
-.no-favorites {
-    text-align: center;
-    grid-column: 1 / -1;
-    color: #888;
-    font-size: 1.2rem;
-    margin-top: 6.2rem;
-}
-
-@media (max-width: 768px) {
-    .favorites-container {
-        grid-template-columns: 1fr;
-    }
-}
-
-.product-card .product-img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    transition: 300ms ease;
-}
-
-.location-name {
-    font-size: 0.836rem;
-}
-
-.card-info {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    gap: 1.15rem;
-    padding-top: 0.5rem;
-}
-
-.card-info-content {
-    display: flex;
-    text-transform: uppercase;
-    min-height: 20px;
-    justify-self: center;
-    align-items: center;
-    gap: 0.5rem;
-    width: 90%;
-    margin-inline: auto;
-}
-
-.content {
-    flex-basis: 30%;
-    display: flex;
-    justify-content: start;
-    min-height: 20px;
-    align-items: center;
-}
-
-.content p {
-    font-size: 0.79rem;
-}
-
-.price {
-    display: flex;
-    justify-content: space-between;
-    width: 90%;
-    margin-inline: auto;
-    gap: 10px;
-}
-
-.price p {
-    font-size: 1.2rem;
-    flex-basis: 30%;
-}
-
-.booking-btn {
-    color: #fff;
-    background-color: #505050;
-    flex-basis: 50%;
-    padding: 0.3rem 0.3rem;
-    text-align: center;
-    font-size: 1rem;
-    border-radius: 5px;
-}
-
-.booking-btn:hover {
-    background-color: #444444;
-    transition: background-color 0.3s ease-in-out;
-}
-
-/* For Smaller than 1024px Screens */
-@media (max-width: 1024px) {
-    .product-card {
-        flex-basis: 30%;
-    }
-}
-
-/* For Smaller than 768px Screens */
-@media (max-width: 768px) {
-    .product-info{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-    }
-
-    .product-card {
-        flex-basis: 45%;
-    }
-}
-
-/* For Smaller than 480px Screens */
-@media (max-width: 480px) {
-    .product-info .product-title {
-        font-size: 2.2rem;
-    }
-
-    .product-card {
-        flex-basis: 100%;
-    }
-}
-
-/* Notification Styles */
-.notification {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #505050;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 4px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    z-index: 1000;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-}
-
-.notification.fade-out {
-    opacity: 0;
-}
-
-/* Accessibility */
-.product-card:focus {
-    outline: 2px solid #505050;
-    outline-offset: 2px;
-}
-
-/* Footer */
-.footer {
-    margin-top: -20px;
-    background-color: #373737;
-    color: #fff;
-    padding: 50px 20px;
-    text-align: center;
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-}
-
-.footer-container .footer-info p {
-    color: #c0c0c0;
-    font-weight: 500;
-}
-
-.footer-info,
-.footer-links,
-.footer-social {
-    flex: 1;
-}
-
-.footer-info h3,
-.footer-links h3,
-.footer-social h3 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-}
-
-.footer-links ul,
-.footer-social ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-links ul li,
-.footer-social ul li {
-    margin-bottom: 10px;
-}
-
-.footer-links a,
-.footer-social a {
-    color: #c0c0c0;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-social a {
-    font-size: 19px;
-    color: #c0c0c0;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-links a:hover,
-.footer-social a:hover {
-     color: #FFF2E1;
-}
-
-.footer-bottom {
-    margin-top: 2rem;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #ccc;
-    border-top: 1px solid #444;
-    padding-top: 1rem;
-}
-
-.footer-bottom p {
-    color: #ccc;
-}
-
-/* Footer Mobile Optimization */
-@media (max-width: 768px) {
-    .footer {
-        padding: 30px 15px;
-    }
-    
-    .footer-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 2.5rem;
-        text-align: center;
-    }
-    
-    .footer-info, 
-    .footer-links, 
-    .footer-social {
-        width: 100%;
-        max-width: 300px;
-    }
-    
-    .footer-links ul, 
-    .footer-social ul {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .footer-links ul li, 
-    .footer-social ul li {
-        margin-bottom: 8px;
-    }
-    
-    .footer-social ul {
-        flex-direction: row;
-        justify-content: center;
-        gap: 15px;
-    }
-    
-    .footer-info h3,
-    .footer-links h3,
-    .footer-social h3 {
-        font-size: 1.3rem;
-        margin-bottom: 15px;
-    }
-
-    .footer-bottom {
-        font-size: 0.8rem;
-        padding-top: 0.5rem;
-    }
-}
-
-/* For Smaller Screens */
-@media (max-width: 480px) {
-    .footer {
-        padding: 25px 10px;
-    }
-    
-    .footer-info p {
-        font-size: 0.9rem;
-    }
-    
-    .footer-links a,
-    .footer-social a {
-        font-size: 0.95rem;
-    }
-    
-    .footer-social a {
-        font-size: 1.5rem;
-    }
-}
+        /* Global Reset and Base Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+        }
+
+        body {
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Custom Scrollbar Styles */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track { 
+            background: hsl(0, 0%, 93%); 
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #505050;
+        }
+
+        /* Image and Media Resets */
+        img, picture, video, canvas, svg {
+            display: block;
+            max-width: 100%;
+        }
+
+        /* Form Element Inheritance */
+        input, button, textarea, select {
+            font: inherit;
+        }
+
+        /* Word Wrap for Text Elements */
+        p, h1, h2, h3, h4, h5, h6 {
+            overflow-wrap: break-word;
+        }
+
+        /* List and Link Resets */
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header Styling */
+        header {
+            background-image: url(images/Pink\ Sunset\ Building.jpg); /* Replace with your hero image */
+            background-color: #f4f4f4; 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            /* Headerin tam ekranı tutması üçün əlavələr */
+            min-height: 100vh; /* Tam viewport hündürlüyü */
+            display: flex; /* İçərisindəki elementləri mərkəzləmək üçün */
+            flex-direction: column; /* Elementləri alt-alta düzmək üçün */
+            align-items: center; /* Üfüqi mərkəzə gətirmək üçün */
+            justify-content: flex-start; /* Navbar yuxarıda qalsın */
+            transition: min-height 0.5s ease-in-out; /* Animasiya üçün */
+            position: relative; /* Arxa fon şəklinin düzgün yerləşməsi üçün */
+            padding-top: 70px; /* Navbarın hündürlüyü qədər boşluq */
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(35, 69, 90, 0.384); /* Şəklin üzərində tünd overlay */
+            z-index: 1; /* Overlayin headerin digər elementlərindən aşağıda olması üçün */
+        }
+
+        /* Navbar Styling */
+        nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 20px;
+        }
+
+        nav .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: #fff;
+            position: relative; /* Z-index üçün */
+            z-index: 2;
+        }
+
+        .nav-list {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background-color: transparent;
+            position: relative; /* Z-index üçün */
+            z-index: 2;
+        }
+
+        .nav-list.active {
+            background-color: #4d4f56;
+        }
+
+        .nav-list.active .list-item {
+            color: #fff;
+        }
+
+        .mobile-menu {
+            display: none; 
+            cursor: pointer;
+            position: relative; /* Z-index üçün */
+            z-index: 2;
+        }
+
+        .list-item {
+            color: #505050;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease, opacity 0.3s ease;
+            margin-right: 1rem;
+        }
+
+        .list-item:hover {
+            opacity: 0.8;
+        }
+
+        .nav-list.active .contact {
+            color: #fff;
+        }
+
+        /* Dropdown Menu Styles */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            width: 180px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .dropdown-menu,
+        .dropdown:focus-within .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 10px 15px;
+            color: #505050;
+            transition: all 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background: #f5f5f5;
+            color: #000;
+        }
+
+        /* Search Form (Hero Section) Styling */
+        form {
+            margin-top: 50px; /* Header padding-top ilə birləşəndə optimal görünüş */
+            padding: 20px 0;
+            position: relative;
+            z-index: 999;
+            min-height: 400px; /* Minimum hündürlük */
+            transition: min-height 0.5s ease-in-out; /* Animasiya üçün əlavə edildi */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 100%; /* Formun tam genişliyini tutması üçün */
+            z-index: 2; /* Overlayin üzərində olması üçün */
+            margin-inline: auto; /* Axtarış hissəsini mərkəzə hizalamaq üçün */
+        }
+
+        form h1 {
+            color: #fff;
+            font-size: 3rem; 
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .search-container {
+            width: 90%; /* Axtarış hissəsini balacalatmaq */
+            max-width: 750px; /* Daha kiçik maksimum en (900px-dən 750px-ə azaldıldı) */
+            margin: 0 auto;
+            margin-bottom: 10px; /* Ətraflı axtarış düyməsinə yaxınlaşdırmaq üçün */
+            background-color: rgba(0, 0, 0, 0.1); /* Yarı-şəffaf fon (daha şəffaf edildi) */
+            box-shadow: 0px 5px 15px rgba(80, 80, 80, 0.15);
+            display: flex;
+            justify-content: center; 
+            flex-wrap: wrap;
+            align-items: flex-start; 
+            gap: 0.6rem; /* Boşluqları azaltmaq (0.8rem-dən 0.6rem-ə azaldıldı) */
+            padding: 1rem 0.8rem; /* Paddingi azaltmaq (1.5rem 1rem-den 1rem 0.8rem-e azaldildi) */
+            border-radius: 0.6rem;
+            box-sizing: border-box;
+            position: relative; 
+            z-index: 1;
+        }
+
+        .search-input-wrapper {
+            position: relative; 
+            flex: 1 1 150px; /* Element ölçülərini balacalatmaq (180px-dən 150px-ə azaldıldı) */
+            min-width: 140px; /* Minimum eni azaldıldı (160px-dən 140px-ə azaldıldı) */
+            max-width: 180px; /* Maksimum eni azaldıldı (220px-dən 180px-ə azaldıldı) */
+            box-sizing: border-box;
+        }
+
+        .search-input {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.034); /* Yarı-şəffaf fon */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid rgba(255, 255, 255, 0.4); /* Ağ rəngli, yarı-şəffaf kənar */
+            border-radius: 5px;
+            padding: 0.5rem 0.75rem;
+            gap: 0.5rem;
+            box-sizing: border-box;
+            cursor: pointer; 
+            position: relative;
+        }
+
+        /* Sadece input üçün stilizasiya */
+        .search-input input {
+            border: none;
+            outline: none;
+            background-color: transparent;
+            font-size: 1rem;
+            width: 100%;
+            cursor: pointer;
+            -webkit-appearance: none; 
+            -moz-appearance: none;
+            appearance: none;
+            color: #fff; /* Yazı rəngi ağ */
+            white-space: nowrap; /* Mətni bir sətirdə saxla */
+            overflow: hidden; /* Çölə çıxan mətni gizlət */
+            text-overflow: ellipsis; /* Çölə çıxan mətni '...' ilə göstər */
+        }
+
+        /* Custom select üçün mətn rəngini ağ etmək */
+        .search-input .selected-text {
+            color: #fff;
+            white-space: nowrap; /* Mətni bir sətirdə saxla */
+            overflow: hidden; /* Çölə çıxan mətni gizlət */
+            text-overflow: ellipsis; /* Çölə çıxan mətni '...' ilə göstər */
+            flex-grow: 1; /* Mətnin mümkün qədər yer tutmasını təmin edir */
+        }
+
+        /* Placeholder rəngi dəyişikliyi */
+        .search-input input::placeholder {
+            color: rgba(255, 255, 255, 0.7); /* Ağ və yarı-şəffaf placeholder */
+        }
+
+        /* Rayon seçimi indi custom olduğu üçün bu stillər lazım deyil
+        .search-input select option {
+            color: #333; 
+            background-color: #fff;
+        }
+        */
+
+        .search-input .bx { 
+            font-size: 1.2rem;
+            color: #fff; /* İkon rəngi ağ */
+            pointer-events: none;
+            flex-shrink: 0; /* İkonun sıxılmasının qarşısını alır */
+        }
+
+        /* Custom dropdown for Price and Property Type */
+        .custom-dropdown-content {
+            position: absolute;
+            top: 100%; /* Hər zaman aşağıya doğru açılsın */
+            left: 0;
+            background-color: #fff;
+            border: 1px solid rgba(80, 80, 80, 0.3);
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 10px;
+            z-index: 100;
+            display: none; 
+            width: 100%;
+            box-sizing: border-box;
+            flex-direction: column; /* Checkboxları alt-alta düzmək */
+        }
+
+        .custom-dropdown-content.active {
+            display: flex; /* Aktiv olduqda flex display */
+        }
+
+        .price-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .price-inputs input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+            color: #333; /* Qiymət inputları üçün yazı rəngi (ağ fonda qara olsun) */
+            background-color: #fff; /* Qiymət inputları üçün fon rəngi */
+        }
+        /* Qiymət inputları placeholder rəngi */
+        .price-inputs input::placeholder {
+            color: #888;
+        }
+
+        .property-type-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .property-type-options label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 5px 0;
+        }
+
+        /* Checkbox styling */
+        .custom-dropdown-content label { /* Bütün custom dropdown checkboxları və radioları üçün */
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 5px 0;
+            color: #333; /* Checkbox/radio mətn rəngi (ağ fonda qara olsun) */
+        }
+
+        .custom-dropdown-content input[type="checkbox"],
+        .custom-dropdown-content input[type="radio"] { /* Bütün custom dropdown checkboxları və radioları üçün */
+            -webkit-appearance: checkbox; /* Brauzerin default görünüşünü qoruyur */
+            -moz-appearance: checkbox;
+            appearance: checkbox;
+            width: auto;
+            cursor: pointer;
+        }
+
+        .property-type-tabs {
+            display: flex;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .property-type-tabs button {
+            flex: 1;
+            padding: 8px 10px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #505050; /* Tab düymələri ağ fonda qara olsun */
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .property-type-tabs button.active {
+            border-color: #505050;
+            color: #505050;
+        }
+
+        .property-type-tab-content {
+            display: none;
+        }
+
+        .property-type-tab-content.active {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .search-btn {
+            flex: 1 1 150px; /* Element ölçülərini balacalatmaq (180px-dən 150px-ə azaldıldı) */
+            min-width: 140px; /* Minimum eni azaldıldı (160px-dən 140px-ə azaldıldı) */
+            max-width: 180px; /* Maksimum eni azaldıldı (220px-dən 180px-ə azaldıldı) */
+            height: 42px; 
+        }
+
+        .search-btn input[type="submit"] {
+            background-color: #213a42; 
+            color: white;
+            padding: 0.5rem 1rem; 
+            border-radius: 5px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            width: 100%;
+            height: 100%; 
+            border: none;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        .search-btn input[type="submit"]:hover {
+            background-color: #27444D;
+        }
+
+        /* Advanced Search Toggle Button */
+        .advanced-search-toggle {
+            background-color: rgba(0, 0, 0, 0.1); /* Daha şəffaf */
+            color: #fff; /* Yazı rəngi ağ */
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px; 
+            transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
+            z-index: 2; /* Ensure it's above the overlay */
+            border: 1px solid rgba(255, 255, 255, 0.4); /* Ağ rəngli, yarı-şəffaf kənar */
+        }
+
+        .advanced-search-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.2); /* Hover zamanı bir az daha az şəffaf */
+        }
+        .advanced-search-toggle .bx {
+            color: #fff; /* İkon rəngi ağ */
+        }
+
+        /* Advanced Search Panel */
+        .advanced-search-panel {
+            background-color: rgba(0, 0, 0, 0.358); /* Daha şəffaf edildi */
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 0.6rem;
+            padding: 1.2rem; /* Paddingi azaldıldı (1.5rem-dən 1.2rem-ə azaldıldı) */
+            width: 90%; /* Axtarış hissəsini balacalatmaq */
+            max-width: 750px; /* Daha kiçik maksimum en (900px-dən 750px-ə azaldıldı) */
+            margin: 20px auto 0 auto; /* Yuxarıdan məsafə və mərkəzləşdirmə */
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem; /* Boşluqları azaltmaq (1.2rem-dən 1rem-ə azaldıldı) */
+            position: relative;
+            z-index: 2;
+            max-height: 0; /* Başlangıçta gizli */
+            overflow: hidden;
+            opacity: 0; /* Başlangıçta şəffaf */
+            visibility: hidden; /* Başlangıçta görünməz */
+            transition: max-height 0.7s ease-out, padding 0.7s ease-out, opacity 0.5s ease, visibility 0.5s ease; /* Animasiya üçün */
+            display: grid; /* Aktiv olduqda grid kimi göstər */
+            border: 1px solid rgba(255, 255, 255, 0.4); /* Ağ rəngli, yarı-şəffaf kənar */
+        }
+
+        .advanced-search-panel.active {
+            max-height: 1000px; /* Panelin maksimum hündürlüyü. Tərkibinə uyğun böyük bir dəyər verin. */
+            padding: 1.8rem; /* Açıldıqda normal padding (2rem-dən 1.8rem-ə azaldıldı) */
+            opacity: 1; /* Aktiv olduqda tamamilə görünən */
+            visibility: visible; /* Aktiv olduqda görünən */
+        }
+        
+        /* Hər sütun üçün əsas qutu */
+        .advanced-search-panel .panel-column {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Sütun içindəki elementlər arasındakı boşluq (12px-dən 10px-ə azaldıldı) */
+        }
+
+        /* Kiçik başlıqlar üçün stil, əsas başlıqdan fərqli olsun */
+        .advanced-search-panel .panel-section-title-small {
+            font-size: 1rem; /* Başlıq ölçüsünü azaldın (1.1rem-dən 1rem-ə azaldıldı) */
+            color: #fff; /* Yazı rəngi ağ */
+            margin-bottom: 0.5rem; /* Margin-bottom azaldıldı (0.6rem-dən 0.5rem-ə azaldıldı) */
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Ağ və yarı-şəffaf xətt */
+        }
+
+        .advanced-search-panel .panel-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px; /* Boşluq azaldıldı (6px-dən 5px-ə azaldıldı) */
+        }
+
+        .advanced-search-panel .panel-input-group label {
+            font-size: 0.9rem;
+            color: #fff; /* Yazı rəngi ağ */
+            font-weight: 500;
+        }
+
+        .advanced-search-panel .panel-input-group select,
+        .advanced-search-panel .panel-input-group input[type="text"],
+        .advanced-search-panel .panel-input-group input[type="number"] {
+            padding: 8px 10px;
+            border: 1px solid rgba(255, 255, 255, 0.4); /* Ağ rəngli, yarı-şəffaf kənar */
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.034); /* Yarı-şəffaf fon */
+            color: #fff; /* Yazı rəngi ağ */
+            white-space: nowrap; /* Mətni bir sətirdə saxla */
+            overflow: hidden; /* Çölə çıxan mətni gizlət */
+            text-overflow: ellipsis; /* Çölə çıxan mətni '...' ilə göstər */
+        }
+        /* Advanced search input placeholder rəngi */
+        .advanced-search-panel .panel-input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .advanced-search-panel .panel-input-group select option {
+            color: #333; /* Optionlar üçün rəngi ağ fon üçün uyğunlaşdırma */
+            background-color: #fff;
+        }
+
+
+        .advanced-search-panel .panel-checkbox-group {
+            display: flex; /* Checkboxları içində flexbox düzəni */
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .advanced-search-panel .panel-checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #fff; /* Yazı rəngi ağ */
+        }
+
+        .advanced-search-panel .panel-checkbox-group input[type="checkbox"] {
+            -webkit-appearance: checkbox;
+            -moz-appearance: checkbox;
+            appearance: checkbox;
+            width: auto;
+            cursor: pointer;
+        }
+
+        /* Sonuncu sütundakı düymələrin yuxarıda olan inputa yaxın olması üçün */
+        .advanced-search-panel .panel-column-last .panel-buttons {
+            margin-top: auto; /* Düymələri sütunun aşağısına itələsin */
+            align-self: flex-end; /* Düymələri sütunun özündə sağa hizala */
+        }
+
+        .advanced-search-panel .panel-buttons {
+            display: flex;
+            justify-content: flex-end; /* Sağ tərəfə hizalayın */
+            gap: 10px; /* Boşluq azaldıldı (15px-dən 10px-ə azaldıldı) */
+            margin-top: 15px; /* Margin-top azaldıldı (20px-dən 15px-ə azaldıldı) */
+        }
+
+        .advanced-search-panel .reset-btn,
+        .advanced-search-panel .search-panel-btn {
+            padding: 8px 20px; /* Padding azaldıldı (10px 25px-dən 8px 20px-ə azaldıldı) */
+            border-radius: 5px;
+            font-size: 0.95rem; /* Font ölçüsü azaldıldı (1rem-dən 0.95rem-ə azaldıldı) */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            background-color: #213a42; /* İlk axtar düyməsi ilə eyni rəng */
+            color: white;
+            border: none;
+        }
+
+        .advanced-search-panel .reset-btn:hover {
+            background-color: #27444D; /* Reset üçün qırmızı hover */
+        }
+
+        .advanced-search-panel .search-panel-btn:hover {
+            background-color: #27444D; /* Axtar üçün boz hover */
+        }
+
+        /* Close button for advanced search panel */
+        .close-panel-btn {
+            position: absolute;
+            top: 8px; /* Yuxarıdan boşluq azaldıldı (10px-dən 8px-ə) */
+            right: 8px; /* Sağdan boşluq azaldıldı (10px-dən 8px-ə) */
+            background: none;
+            border: none;
+            font-size: 20px; /* Ölçüsü azaldıldı (24px-dən 20px-ə) */
+            color: #fff; /* Rəngi ağ */
+            cursor: pointer;
+            z-index: 10;
+        }
+        .close-panel-btn:hover {
+            color: #dc3545;
+        }
+
+        /* Product Section Styling */
+        #product {
+            width: 100%;
+            padding-block: 4rem; 
+            padding-bottom: 0px; 
+            margin-top: 20px; 
+        }
+
+        .product-info {
+            width: 88%;
+            margin: 0 auto;
+            display: flex;
+            justify-content:center;
+            margin-bottom: 2rem;
+            margin-top: -20px; 
+        }
+
+        .product-info .product-title {
+            font-size: clamp(1.5rem, 2vw, 2.8rem); 
+            font-weight: 500;
+            text-transform: capitalize;
+            color: #505050;
+            width: 69%; 
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #product .container {
+            width: 87%;
+            margin-inline: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .product-card {
+            position: relative;
+            flex-basis: 22%; 
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            box-shadow: 0px 5px 10px rgba(80, 80, 80, 0.20);
+            padding-bottom: 1rem;
+            overflow: hidden;
+            cursor: default; /* Changed to default */
+        }
+
+        .favorite-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: opacity 300ms ease;
+            z-index: 10; 
+        }
+
+        .favorite-btn:hover {
+            opacity: 0.8;
+        }
+
+        .favorite-btn .heart-img {
+            width: 25px;
+            height: 25px;
+        }
+
+        .favorite-btn.favorited .heart-img {
+            content: url('./images/heart1.png'); 
+        }
+
+        .no-favorites {
+            text-align: center;
+            grid-column: 1 / -1; 
+            color: #888;
+            font-size: 1.2rem;
+            margin-top: 6.2rem;
+        }
+
+        .product-card .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: 300ms ease;
+        }
+
+        .location-name {
+            font-size: 0.836rem;
+        }
+
+        .card-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            gap: 1.15rem;
+            padding-top: 0.5rem;
+        }
+
+        .card-info-content {
+            display: flex;
+            text-transform: uppercase;
+            min-height: 20px;
+            justify-self: center;
+            align-items: center;
+            gap: 0.5rem;
+            width: 90%;
+            margin-inline: auto;
+            flex-wrap: wrap; 
+        }
+
+        .content {
+            flex-basis: 30%; 
+            display: flex;
+            justify-content: start;
+            min-height: 20px;
+            align-items: center;
+            gap: 0.3rem; 
+        }
+
+        .content p {
+            font-size: 0.79rem;
+        }
+
+        .price {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            margin-inline: auto;
+            gap: 10px;
+            align-items: center; 
+        }
+
+        .price p {
+            font-size: 1.2rem;
+            flex-basis: 30%; 
+            font-weight: 500; 
+            color: #333;
+        }
+
+        .booking-btn {
+            color: #fff;
+            background-color: #505050;
+            flex-basis: 50%; 
+            padding: 0.3rem 0.3rem;
+            text-align: center;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out;
+            white-space: nowrap; 
+            cursor: pointer; /* Ensure pointer on this button */
+        }
+
+        .booking-btn:hover {
+            background-color: #444444;
+        }
+
+        /* Notification Styles (if used by JS) */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #505050;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .notification.fade-out {
+            opacity: 0;
+        }
+
+        /* Accessibility (Focus States) */
+        .product-card:focus {
+            outline: 2px solid #505050;
+            outline-offset: 2px;
+        }
+
+        /* Footer Styling */
+        .footer {
+            margin-top: 2rem; 
+            background-color: #4d4f56;
+            color: #fff;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px; 
+        }
+
+        .footer-container .footer-info p {
+            color: #c0c0c0;
+            font-weight: 500;
+        }
+
+        .footer-info,
+        .footer-links,
+        .footer-social {
+            flex: 1;
+            min-width: 150px; 
+        }
+
+        .footer-info h3,
+        .footer-links h3,
+        .footer-social h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul,
+        .footer-social ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li,
+        .footer-social ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a,
+        .footer-social a {
+            color: #c0c0c0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-social a {
+            font-size: 19px; 
+            color: #c0c0c0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover,
+        .footer-social a:hover {
+            color: #FFF2E1;
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #ccc;
+            border-top: 1px solid #444;
+            padding-top: 1rem;
+        }
+
+        .footer-bottom p {
+            color: #ccc;
+        }
+        
+        /* Load More Button Styling */
+        .loadMoreBtn {
+            display: block; 
+            margin: 2rem auto; 
+            padding: 1rem 2rem;
+            background-color: #505050;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .loadMoreBtn:hover {
+            background-color: #444444;
+        }
