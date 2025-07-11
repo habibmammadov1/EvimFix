@@ -101,4 +101,10 @@ public class HomeController {
         ModelAndView model = new ModelAndView("/website/about");
         return model;
     }
+
+    @GetMapping("/elaqe")
+    public ModelAndView elaqe() {
+        ModelAndView model = new ModelAndView("/website/elaqe");
+        return model;
+    }
 }
