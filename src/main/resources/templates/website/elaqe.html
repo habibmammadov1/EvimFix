@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="az">
+<head th:replace="~{/website/template/head :: head}"></head>
+<head>
+  <link th:href="@{/website/css/about.css}" rel="stylesheet" />
+</head>
+<body>
+    <!-- navbar -->
+    <div th:replace="~{/website/template/navbar :: navbar}"></div>
+
+    <!-- Contact Section -->
+    <main class="main-content">
+        <section class="contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <h1 class="section-title">Bizimlə Əlaqə Saxlayın</h1>
+                    <p class="section-subtitle">Hər hansı sualınız və ya təklifiniz varsa, aşağıdakı formadan istifadə edə bilərsiniz.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <!-- Contact Form -->
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Adınız</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Ünvanı</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Telefon Nömrəsi</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Mesajınız</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn submit-btn">Mesaj Göndər</button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="contact-info">
+                        <div class="info-card">
+                            <i class='bx bx-phone'></i>
+                            <h3>Telefon</h3>
+                            <a href="tel:+994505131380">+994 50 513 13 80</a>
+                        </div>
+                        <div class="info-card">
+                            <i class='bx bx-envelope'></i>
+                            <h3>Email</h3>
+                            <a href="mailto:info@evimfix.az">info@evimfix.az</a>
+                        </div>
+                        <div class="info-card">
+                            <i class='bx bx-map'></i>
+                            <h3>Ünvan</h3>
+                            <p>Bakı, Nəsimi r., S.Rüstəm küç. 59</p>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://shorturl.at/yipHj" target="_blank"><i class='bx bxl-instagram'></i></a>
+                            <a href="https://shorturl.at/PEljm" target="_blank"><i class='bx bxl-tiktok'></i></a>
+                            <a href="https://wa.me/994505131380" target="_blank"><i class='bx bxl-whatsapp'></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <div class="property-map">
+            <h3>Yerləşmə Xəritəsi</h3>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3039.6521512033432!2d49.837100799999995!3d40.3722367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307db090fdd4a3%3A0x65f157d497c9617!2s69%20Nizami%20St%2C%20Baku%201005!5e0!3m2!1saz!2saz!4v1748809355729!5m2!1saz!2saz"
+                width="100%" 
+                height="450" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </main>
+
+    <footer th:replace="~{/website/template/footer :: footer}"></footer>
+
+    <script>
+      function showMenu() {
+      document.querySelector('.nav-list').classList.toggle('active');
+      }
+    </script>
+</body>
+</html>
