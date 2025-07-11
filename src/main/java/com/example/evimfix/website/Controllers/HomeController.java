@@ -36,6 +36,7 @@ public class HomeController {
                             @RequestParam(required = false) Integer alishKiraye
     ){
         ModelAndView model = new ModelAndView("/website/indexWeb");
+        model.addObject("pageName", "EvimFix - Əmlak Alqı Satqı və Kirayə");
         model.addObject("sheherler", alqiSatqiService.getSheherler());
         model.addObject("alishKiraye", alqiSatqiService.getAlishKirayeNovler());
         model.addObject("emlakNovler", alqiSatqiService.getEmlakNovleri());
@@ -63,6 +64,7 @@ public class HomeController {
     @GetMapping("/property")
     public ModelAndView property(@RequestParam int id) {
         ModelAndView model = new ModelAndView("/website/evDetails");
+        model.addObject("pageName", "Detalları");
 
         AlqiSatqi alqiSatqi = alqiSatqiService.getAlqiSatqiById(id).get();
 
@@ -99,18 +101,21 @@ public class HomeController {
     @GetMapping("/haqqimizda")
     public ModelAndView about() {
         ModelAndView model = new ModelAndView("/website/about");
+        model.addObject("pageName", "Haqqımızda");
         return model;
     }
 
     @GetMapping("/elaqe")
     public ModelAndView elaqe() {
         ModelAndView model = new ModelAndView("/website/elaqe");
+        model.addObject("pageName", "Əlaqə");
         return model;
     }
 
     @GetMapping("/sevimliler")
     public ModelAndView favorites() {
         ModelAndView model = new ModelAndView("/website/favorites");
+        model.addObject("pageName", "Sevimlilər");
         return model;
     }
 }
