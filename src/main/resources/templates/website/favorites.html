@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="az">
+<head th:replace="~{/website/template/head :: head}"></head>
+<head>
+  <link th:href="@{/website/css/styles.css}" rel="stylesheet" />
+</head>
+<body>
+    <!-- navbar -->
+    <div th:replace="~{/website/template/navbar :: navbar}"></div>
+
+    <!-- Favorites Section - Matching home page style -->
+    <section id="product">
+        <div class="product-info" style="margin-top: 30px;">
+            <h2 class="product-title">Sevimli Mənzillərim</h2>
+        </div>
+        <div class="container" id="favoritesContainer" style="margin-top: -140px;">
+            <!-- Favorites will be loaded here with same card structure as home page -->
+            <p class="no-favorites">Heç bir sevimli mənzil əlavə etməmisiniz</p>
+        </div>
+    </section>
+
+    <footer th:replace="~{/website/template/footer :: footer}"></footer>
+
+    <script>
+      function showMenu() {
+      document.querySelector('.nav-list').classList.toggle('active');
+      }
+    </script>
+
+    <script src="favorites.js"></script>
+</body>
+</html>

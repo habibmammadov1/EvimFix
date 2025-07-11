@@ -96,7 +96,7 @@ public class HomeController {
     }
 
     // Other pages
-    @GetMapping("/about")
+    @GetMapping("/haqqimizda")
     public ModelAndView about() {
         ModelAndView model = new ModelAndView("/website/about");
         return model;
@@ -105,6 +105,12 @@ public class HomeController {
     @GetMapping("/elaqe")
     public ModelAndView elaqe() {
         ModelAndView model = new ModelAndView("/website/elaqe");
+        return model;
+    }
+
+    @GetMapping("/sevimliler")
+    public ModelAndView favorites() {
+        ModelAndView model = new ModelAndView("/website/favorites");
         return model;
     }
 }
